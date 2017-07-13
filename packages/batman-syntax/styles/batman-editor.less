@@ -1,0 +1,87 @@
+@import 'colors';
+@import 'syntax-variables';
+
+atom-text-editor[mini] .scroll-view,
+atom-text-editor .scroll-view {
+  padding-left: 1px;
+}
+
+atom-text-editor.editor {
+    // fix for cursor disappearing under wrap guide
+    .wrap-guide {
+        background-color: @syntax-wrap-guide-color;
+    }
+
+    .indent-guide {
+        color: @syntax-indent-guide-color;
+    }
+}
+
+atom-text-editor {
+    background-color: @syntax-background-color;
+    color: @syntax-text-color;
+
+    .line-numbers .tile {
+        width: 90%;
+    }
+
+    .wrap-guide {
+        background-color: @syntax-wrap-guide-color;
+    }
+
+    .indent-guide {
+        color: @syntax-indent-guide-color;
+    }
+
+    .invisible-character {
+        color: @syntax-invisible-character-color;
+    }
+
+    .line.cursor-line {
+        background-color: fade(@black, 20%);
+    }
+
+    .cursor {
+        border-left-width: 2px;
+        border-left-color: @syntax-cursor-color;
+    }
+
+    .gutter {
+        background-color: @syntax-gutter-background-color;
+        color: @syntax-gutter-text-color;
+
+        .line-number {
+            &.cursor-line {
+                background-color: @syntax-gutter-background-color-selected;
+                color: @syntax-gutter-text-color-selected;
+            }
+
+            &.cursor-line-no-selection {
+                color: @syntax-gutter-text-color-selected;
+            }
+        }
+    }
+
+    .gutter .line-number.folded,
+    .gutter .line-number:after,
+    .fold-marker:after {
+        color: @gray_80;
+    }
+
+    .invisible {
+        color: @syntax-text-color;
+    }
+
+    .selection .region {
+        background-color: @syntax-selection-color;
+    }
+}
+
+atom-text-editor .search-results .syntax--marker .region {
+    background-color: transparent;
+    border: 1px solid @syntax-result-marker-color;
+}
+
+atom-text-editor .search-results .syntax--marker.current-result .region {
+    border: 1px solid @syntax-result-marker-color-selected;
+}

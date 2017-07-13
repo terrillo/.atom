@@ -1,0 +1,69 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59543-15riysv.e5snkzw7b9/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59543-15riysv.e5snkzw7b9/package.tgz",
+        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59543-15riysv.e5snkzw7b9/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117613-59543-1y6bul.3wfiveipb9"
+    ]
+  ],
+  "_from": "../d-117613-59543-15riysv.e5snkzw7b9/package.tgz",
+  "_id": "php-twig@4.0.0",
+  "_inCache": true,
+  "_location": "/php-twig",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59543-15riysv.e5snkzw7b9/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59543-15riysv.e5snkzw7b9/package.tgz",
+    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59543-15riysv.e5snkzw7b9/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-117613-59543-15riysv.e5snkzw7b9/package.tgz",
+  "_shasum": "9d746076201b60d979c9f6ac19782cec349ffedf",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59543-15riysv.e5snkzw7b9/package.tgz",
+  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117613-59543-1y6bul.3wfiveipb9",
+  "bugs": {
+    "url": "https://github.com/reesef/php-twig/issues"
+  },
+  "dependencies": {},
+  "description": "Twig support for Atom.",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">0.10.0"
+  },
+  "homepage": "https://github.com/reesef/php-twig#readme",
+  "license": "MIT",
+  "name": "php-twig",
+  "optionalDependencies": {},
+  "private": true,
+  "readme": "# PHP-twig for atom\n\nTwig syntax highlighting for atom.\n\nLanguages supported :\n* HTML\n* CSS\n* Javascript\n* JSON\n* XML\n\n\nOriginally converted from https://github.com/Anomareh/PHP-Twig.tmbundle\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reesef/php-twig.git"
+  },
+  "version": "4.0.0",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}

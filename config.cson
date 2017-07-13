@@ -1,8 +1,13 @@
 "*":
   core:
     telemetryConsent: "no"
+    themes: [
+      "one-dark-ui"
+      "batman-syntax"
+    ]
   editor:
     autoIndentOnPaste: false
+    fontSize: 16
     softWrap: true
   "exception-reporting":
     userId: "04b4ef68-ef77-4034-814f-5fce2d6bf2d4"

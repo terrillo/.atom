@@ -1,0 +1,73 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59613-1di0l6t.u9r4x9lik9/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59613-1di0l6t.u9r4x9lik9/package.tgz",
+        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59613-1di0l6t.u9r4x9lik9/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117613-59613-1oyoevx.ppd1fez5mi"
+    ]
+  ],
+  "_from": "../d-117613-59613-1di0l6t.u9r4x9lik9/package.tgz",
+  "_id": "batman-syntax@1.1.0",
+  "_inCache": true,
+  "_location": "/batman-syntax",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59613-1di0l6t.u9r4x9lik9/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59613-1di0l6t.u9r4x9lik9/package.tgz",
+    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59613-1di0l6t.u9r4x9lik9/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-117613-59613-1di0l6t.u9r4x9lik9/package.tgz",
+  "_shasum": "4b533d43c6ded91519801cf0d45742f3a47025ad",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117613-59613-1di0l6t.u9r4x9lik9/package.tgz",
+  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117613-59613-1oyoevx.ppd1fez5mi",
+  "bugs": {
+    "url": "https://github.com/ifcanduela/batman-syntax/issues"
+  },
+  "dependencies": {},
+  "description": "A color scheme inspired by the World's Greatest Detective",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "homepage": "https://github.com/ifcanduela/batman-syntax#readme",
+  "keywords": [
+    "syntax",
+    "theme"
+  ],
+  "license": "MIT",
+  "name": "batman-syntax",
+  "optionalDependencies": {},
+  "readme": "# batman-syntax theme for Atom\n\nAn Atom syntax highlighting scheme inspired by the World's Greatest Detective.\n\nBased on [one-dark-syntax](https://atom.io/packages/one-dark-syntax).\n\n![Preview](https://raw.githubusercontent.com/ifcanduela/batman-syntax/master/screenshot.png)\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ifcanduela/batman-syntax.git"
+  },
+  "theme": "syntax",
+  "version": "1.1.0",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}
