@@ -1,0 +1,10 @@
+"*":
+  core:
+    telemetryConsent: "no"
+  editor:
+    autoIndentOnPaste: false
+    softWrap: true
+  "exception-reporting":
+    userId: "04b4ef68-ef77-4034-814f-5fce2d6bf2d4"
+  welcome:
+    showOnStartup: false

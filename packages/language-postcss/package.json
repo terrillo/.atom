@@ -1,0 +1,81 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117528-69201-1oyir0d.fw6sdu0udi/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117528-69201-1oyir0d.fw6sdu0udi/package.tgz",
+        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117528-69201-1oyir0d.fw6sdu0udi/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117528-69201-84f5jg.o39aw9izfr"
+    ]
+  ],
+  "_from": "../d-117528-69201-1oyir0d.fw6sdu0udi/package.tgz",
+  "_id": "language-postcss@1.3.1",
+  "_inCache": true,
+  "_location": "/language-postcss",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117528-69201-1oyir0d.fw6sdu0udi/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117528-69201-1oyir0d.fw6sdu0udi/package.tgz",
+    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117528-69201-1oyir0d.fw6sdu0udi/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-117528-69201-1oyir0d.fw6sdu0udi/package.tgz",
+  "_shasum": "5ec2b026c91423f89ad76f48cd31fc3f55658e0b",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117528-69201-1oyir0d.fw6sdu0udi/package.tgz",
+  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117528-69201-84f5jg.o39aw9izfr",
+  "author": {
+    "name": "Azat S.",
+    "email": "to@azat.io",
+    "url": "http://azat.io/"
+  },
+  "bugs": {
+    "url": "https://github.com/azat-io/atom-language-postcss/issues"
+  },
+  "dependencies": {},
+  "description": "Syntax highlighting for PostCSS",
+  "devDependencies": {},
+  "engines": {
+    "atom": "*",
+    "node": "*"
+  },
+  "homepage": "https://github.com/azat-io/atom-language-postcss#readme",
+  "keywords": [
+    "postcss",
+    "sugarss",
+    "language",
+    "grammar",
+    "editor"
+  ],
+  "license": "MIT",
+  "name": "language-postcss",
+  "optionalDependencies": {},
+  "readme": "# Atom PostCSS language\n\n[![apm version](https://img.shields.io/apm/v/language-postcss.svg)](https://atom.io/packages/language-postcss)\n[![apm downloads](https://img.shields.io/apm/dm/language-postcss.svg?maxAge=2592000)](https://atom.io/packages/language-postcss)\n[![gitHub issues](https://img.shields.io/github/issues/azat-io/atom-language-postcss.svg)](https://github.com/azat-io/atom-language-postcss)\n[![github pull requests](https://img.shields.io/github/issues-pr-raw/azat-io/atom-language-postcss.svg)](https://github.com/azat-io/atom-language-postcss)\n[![license](https://img.shields.io/apm/l/language-postcss.svg)](https://atom.io/packages/language-postcss)\n\nAdds syntax highlighting to [PostCSS](https://github.com/postcss/postcss) `*.pcss` `*.css` files and [SugarSS](https://github.com/postcss/sugarss) `*.sss` files in Atom.\n\nContributions are greatly appreciated. Please fork this repository and open a pull request to make grammar tweaks, etc.\n\n![sugarss](https://cloud.githubusercontent.com/assets/5698350/13654962/fb2de0de-e66c-11e5-9133-1860f04aa480.png)\n",
+  "readmeFilename": "readme.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azat-io/atom-language-postcss.git"
+  },
+  "version": "1.3.1",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}
