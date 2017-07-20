@@ -1,9 +1,12 @@
 "*":
   core:
+    disabledPackages: [
+      "linter-twig"
+    ]
     telemetryConsent: "no"
     themes: [
       "one-dark-ui"
-      "batman-syntax"
+      "ninja-ui-syntax"
     ]
   editor:
     autoIndentOnPaste: false

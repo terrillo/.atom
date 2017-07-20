@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41361-tatl1j.slzdjz6w29/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41361-tatl1j.slzdjz6w29/package.tgz",
+        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41361-tatl1j.slzdjz6w29/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117620-41361-b2px53.xqwz2rzfr"
+    ]
+  ],
+  "_from": "../d-117620-41361-tatl1j.slzdjz6w29/package.tgz",
+  "_id": "ninja-ui-syntax@0.1.4",
+  "_inCache": true,
+  "_location": "/ninja-ui-syntax",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41361-tatl1j.slzdjz6w29/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41361-tatl1j.slzdjz6w29/package.tgz",
+    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41361-tatl1j.slzdjz6w29/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-117620-41361-tatl1j.slzdjz6w29/package.tgz",
+  "_shasum": "01b758d2611075e81fb3ca834a0ce7c15f589163",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41361-tatl1j.slzdjz6w29/package.tgz",
+  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117620-41361-b2px53.xqwz2rzfr",
+  "bugs": {
+    "url": "https://github.com/licatajustin/ninja-ui-syntax/issues"
+  },
+  "dependencies": {},
+  "description": "Beautiful syntax theme inspired by a Dribbble shot.",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/licatajustin/ninja-ui-syntax#readme",
+  "keywords": [
+    "syntax",
+    "theme",
+    "uixninja",
+    "dribbble",
+    "ninja",
+    "beautiful"
+  ],
+  "license": "MIT",
+  "name": "ninja-ui-syntax",
+  "optionalDependencies": {},
+  "readme": "# Ninja-UI Syntax Theme, for Atom\n\nBeautiful syntax theme inspired by\n[a Dribbble shot](https://dribbble.com/shots/2932388-code-editor-redesign),\nby [uixninja](https://dribbble.com/uixninja).\n\n---\n\n### Installation\n\n```bash\napm install ninja-ui-syntax\n```\n\n### Screenshots\n\n*JavaScript*\n![Screenshot of JavaScript](https://raw.githubusercontent.com/licatajustin/ninja-ui-syntax/master/assets/javascript.png)\n\n*Ruby*\n![Screenshot of Ruby](https://raw.githubusercontent.com/licatajustin/ninja-ui-syntax/master/assets/ruby.png)\n\n*HTML*\n![Screenshot of HTML](https://raw.githubusercontent.com/licatajustin/ninja-ui-syntax/master/assets/html.png)\n\n*SCSS*\n![Screenshot of SCSS](https://raw.githubusercontent.com/licatajustin/ninja-ui-syntax/master/assets/scss.png)\n\n### License\n\nMIT @ [Justin Licata](https://twitter.com/justinlicata)\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/licatajustin/ninja-ui-syntax.git"
+  },
+  "theme": "syntax",
+  "version": "0.1.4",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
+}
