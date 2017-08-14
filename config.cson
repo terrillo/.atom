@@ -14,5 +14,15 @@
     softWrap: true
   "exception-reporting":
     userId: "04b4ef68-ef77-4034-814f-5fce2d6bf2d4"
+  "git-blame":
+    columnWidth: 389
+  "linter-php": {}
+  "linter-phpcs": {}
+  "linter-twig": {}
+  "linter-ui-default":
+    panelHeight: 69
+    showPanel: true
+  wakatime:
+    apikey: "Saved in your ~/.wakatime.cfg file"
   welcome:
     showOnStartup: false
