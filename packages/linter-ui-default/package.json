@@ -2,39 +2,39 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41323-4eekz5.9ksz7low29/package.tgz",
+        "raw": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13666-j1loef.1hybny7gb9/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41323-4eekz5.9ksz7low29/package.tgz",
-        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41323-4eekz5.9ksz7low29/package.tgz",
+        "rawSpec": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13666-j1loef.1hybny7gb9/package.tgz",
+        "spec": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13666-j1loef.1hybny7gb9/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117620-41323-x5anne.4d0opw4s4i"
+      "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/apm-install-dir-117714-13666-wohu8f.o0pjyycik9"
     ]
   ],
-  "_from": "../d-117620-41323-4eekz5.9ksz7low29/package.tgz",
-  "_id": "linter-ui-default@1.6.3",
+  "_from": "../d-117714-13666-j1loef.1hybny7gb9/package.tgz",
+  "_id": "linter-ui-default@1.6.4",
   "_inCache": true,
   "_location": "/linter-ui-default",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41323-4eekz5.9ksz7low29/package.tgz",
+    "raw": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13666-j1loef.1hybny7gb9/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41323-4eekz5.9ksz7low29/package.tgz",
-    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41323-4eekz5.9ksz7low29/package.tgz",
+    "rawSpec": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13666-j1loef.1hybny7gb9/package.tgz",
+    "spec": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13666-j1loef.1hybny7gb9/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-117620-41323-4eekz5.9ksz7low29/package.tgz",
-  "_shasum": "1aa958af941aff923c6d2dd66057c117d7aed3d6",
+  "_resolved": "file:../d-117714-13666-j1loef.1hybny7gb9/package.tgz",
+  "_shasum": "5187c3216cec87ec956d6d43e799230d9b7c0f6b",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117620-41323-4eekz5.9ksz7low29/package.tgz",
-  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117620-41323-x5anne.4d0opw4s4i",
+  "_spec": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13666-j1loef.1hybny7gb9/package.tgz",
+  "_where": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/apm-install-dir-117714-13666-wohu8f.o0pjyycik9",
   "bugs": {
     "url": "https://github.com/steelbrain/linter-ui-default/issues"
   },
@@ -187,7 +187,7 @@
   "description": "Default UI for the Linter package",
   "devDependencies": {
     "eslint-config-steelbrain": "^3.0.0",
-    "flow-bin": "^0.46.0",
+    "flow-bin": "^0.52.0",
     "jasmine-fix": "^1.0.1",
     "rimraf": "^2.5.4"
   },
@@ -228,7 +228,7 @@
   "scripts": {
     "test": "(apm test) && (flow check) && (eslint . )"
   },
-  "version": "1.6.3",
+  "version": "1.6.4",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -274,7 +274,7 @@
       },
       {
         "name": "fbjs",
-        "version": "0.8.12",
+        "version": "0.8.14",
         "path": "node_modules/fbjs/index.js"
       },
       {
@@ -319,7 +319,7 @@
       },
       {
         "name": "node-fetch",
-        "version": "1.7.1",
+        "version": "1.7.2",
         "path": "node_modules/node-fetch/index.js"
       },
       {
@@ -394,7 +394,7 @@
       },
       {
         "name": "semver",
-        "version": "5.3.0",
+        "version": "5.4.1",
         "path": "node_modules/semver/semver.js"
       },
       {
