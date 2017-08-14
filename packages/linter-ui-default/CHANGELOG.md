@@ -1,3 +1,9 @@
+## 1.6.4
+
+* Fix a style issue on Atom v1.19.0
+* Fix incorrect times reported to Busy Signal
+* Fix behavior of file scope when Linter Panel is used inside a pane container
+
 ## 1.6.3
 
 * Hide tooltip when cursor is changed and `tooltipFollows` is set to `Both`

@@ -2,39 +2,39 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-2302-rkxeuk.4ahc7kfbt9/package.tgz",
+        "raw": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13657-mloykv.z0ilqe61or/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-2302-rkxeuk.4ahc7kfbt9/package.tgz",
-        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-2302-rkxeuk.4ahc7kfbt9/package.tgz",
+        "rawSpec": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13657-mloykv.z0ilqe61or/package.tgz",
+        "spec": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13657-mloykv.z0ilqe61or/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-11772-2302-3htn8y.mgysw0zfr"
+      "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/apm-install-dir-117714-13657-bv5ykt.fm503eg66r"
     ]
   ],
-  "_from": "../d-11772-2302-rkxeuk.4ahc7kfbt9/package.tgz",
-  "_id": "git-blame@1.2.0",
+  "_from": "../d-117714-13657-mloykv.z0ilqe61or/package.tgz",
+  "_id": "git-blame@1.2.1",
   "_inCache": true,
   "_location": "/git-blame",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-2302-rkxeuk.4ahc7kfbt9/package.tgz",
+    "raw": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13657-mloykv.z0ilqe61or/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-2302-rkxeuk.4ahc7kfbt9/package.tgz",
-    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-2302-rkxeuk.4ahc7kfbt9/package.tgz",
+    "rawSpec": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13657-mloykv.z0ilqe61or/package.tgz",
+    "spec": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13657-mloykv.z0ilqe61or/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-11772-2302-rkxeuk.4ahc7kfbt9/package.tgz",
-  "_shasum": "70426588088ef0804209b46f38b4afa6f8de8b04",
+  "_resolved": "file:../d-117714-13657-mloykv.z0ilqe61or/package.tgz",
+  "_shasum": "3009241dc62060a7300141431b2690a061fbe9d8",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-2302-rkxeuk.4ahc7kfbt9/package.tgz",
-  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-11772-2302-3htn8y.mgysw0zfr",
+  "_spec": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/d-117714-13657-mloykv.z0ilqe61or/package.tgz",
+  "_where": "/private/var/folders/b2/rrq2h1750qqdg2vkvjsn8vcw0000gn/T/apm-install-dir-117714-13657-bv5ykt.fm503eg66r",
   "activationCommands": {
     "atom-text-editor": [
       "git-blame:toggle"
@@ -75,7 +75,7 @@
   "scripts": {
     "bump": "standard-version"
   },
-  "version": "1.2.0",
+  "version": "1.2.1",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -136,7 +136,7 @@
       },
       {
         "name": "es5-ext",
-        "version": "0.10.26",
+        "version": "0.10.27",
         "path": "node_modules/es5-ext/index.js"
       },
       {
@@ -281,7 +281,7 @@
       },
       {
         "name": "node-fetch",
-        "version": "1.7.1",
+        "version": "1.7.2",
         "path": "node_modules/node-fetch/index.js"
       },
       {
@@ -1599,6 +1599,7 @@
         "node_modules/es5-ext/object/copy.js",
         "node_modules/es5-ext/object/count.js",
         "node_modules/es5-ext/object/create.js",
+        "node_modules/es5-ext/object/ensure-finite-number.js",
         "node_modules/es5-ext/object/ensure-natural-number-value.js",
         "node_modules/es5-ext/object/ensure-natural-number.js",
         "node_modules/es5-ext/object/ensure-promise.js",
@@ -1617,6 +1618,7 @@
         "node_modules/es5-ext/object/is-copy-deep.js",
         "node_modules/es5-ext/object/is-copy.js",
         "node_modules/es5-ext/object/is-empty.js",
+        "node_modules/es5-ext/object/is-finite-number.js",
         "node_modules/es5-ext/object/is-number-value.js",
         "node_modules/es5-ext/object/is-object.js",
         "node_modules/es5-ext/object/is-plain-object.js",
