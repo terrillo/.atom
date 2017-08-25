@@ -2,39 +2,42 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-1650-jczqjt.liejyvi/package.tgz",
+        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-1650-jczqjt.liejyvi/package.tgz",
-        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-1650-jczqjt.liejyvi/package.tgz",
+        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
+        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-11772-1650-qh5q06.1u735trzfr"
+      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117725-31105-1892zri.t62giizfr"
     ]
   ],
-  "_from": "../d-11772-1650-jczqjt.liejyvi/package.tgz",
-  "_id": "linter-php@1.3.2",
+  "_from": "../d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
+  "_id": "linter-php@1.4.0",
   "_inCache": true,
   "_location": "/linter-php",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-1650-jczqjt.liejyvi/package.tgz",
+    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-1650-jczqjt.liejyvi/package.tgz",
-    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-1650-jczqjt.liejyvi/package.tgz",
+    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
+    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-11772-1650-jczqjt.liejyvi/package.tgz",
-  "_shasum": "aa2e5bfb81c99eeb4f4f3d7350cc8cd14d055fe5",
+  "_resolved": "file:../d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
+  "_shasum": "f638f32acb4963347951907ebcb59fafec4de197",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-11772-1650-jczqjt.liejyvi/package.tgz",
-  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-11772-1650-qh5q06.1u735trzfr",
+  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
+  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117725-31105-1892zri.t62giizfr",
+  "activationHooks": [
+    "language-php:grammar-used"
+  ],
   "bugs": {
     "url": "https://github.com/AtomLinter/linter-php/issues"
   },
@@ -49,20 +52,27 @@
       "title": "Error Reporting Level Override",
       "description": "Force overriding the `error_reporting` setting from php.ini to `E_ALL` if php.ini is setup to ignore most errors.",
       "default": true
+    },
+    "ignorePhpIni": {
+      "type": "boolean",
+      "title": "Ignore php.ini",
+      "description": "Tell PHP to ignore the php.ini when checking code. This can potentially speed up linting quite a bit, but can also cause PHP to fail to compile your code, breaking linting.",
+      "default": false
     }
   },
   "dependencies": {
-    "atom-linter": "^9.0.0",
+    "atom-linter": "^10.0.0",
     "atom-package-deps": "^4.0.1"
   },
   "description": "Lint PHP on the fly, using php -l",
   "devDependencies": {
-    "eslint": "^3.12.0",
-    "eslint-config-airbnb-base": "^11.0.0",
-    "eslint-plugin-import": "^2.2.0"
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0",
+    "jasmine-fix": "^1.3.0"
   },
   "engines": {
-    "atom": ">=1.4.0 <2.0.0"
+    "atom": ">=1.7.0 <2.0.0"
   },
   "eslintConfig": {
     "extends": "airbnb-base",
@@ -78,7 +88,8 @@
       ]
     },
     "env": {
-      "node": true
+      "node": true,
+      "browser": true
     },
     "globals": {
       "atom": true
@@ -109,19 +120,24 @@
     "lint": "eslint .",
     "test": "apm test"
   },
-  "version": "1.3.2",
+  "version": "1.4.0",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
       {
         "name": "atom-linter",
-        "version": "9.0.1",
+        "version": "10.0.0",
         "path": "node_modules/atom-linter/lib/index.js"
       },
       {
         "name": "atom-package-deps",
         "version": "4.6.0",
         "path": "node_modules/atom-package-deps/lib/index.js"
+      },
+      {
+        "name": "sb-exec",
+        "version": "3.1.0",
+        "path": "node_modules/atom-package-deps/node_modules/sb-exec/lib/index.js"
       },
       {
         "name": "atom-package-path",
@@ -160,7 +176,7 @@
       },
       {
         "name": "sb-exec",
-        "version": "3.1.0",
+        "version": "4.0.0",
         "path": "node_modules/sb-exec/lib/index.js"
       },
       {
@@ -195,7 +211,7 @@
       },
       {
         "name": "tmp",
-        "version": "0.0.31",
+        "version": "0.0.33",
         "path": "node_modules/tmp/lib/tmp.js"
       }
     ],
@@ -209,6 +225,10 @@
         "node_modules/atom-package-deps/lib/index.js",
         "node_modules/atom-package-deps/lib/types.js",
         "node_modules/atom-package-deps/lib/view.js",
+        "node_modules/atom-package-deps/node_modules/sb-exec/decls/jasmine.js",
+        "node_modules/atom-package-deps/node_modules/sb-exec/lib/helpers.js",
+        "node_modules/atom-package-deps/node_modules/sb-exec/lib/index.js",
+        "node_modules/atom-package-deps/node_modules/sb-exec/lib/types.js",
         "node_modules/atom-package-path/lib/index.js",
         "node_modules/consistent-env/lib/helpers.js",
         "node_modules/consistent-env/lib/index.js",
@@ -217,7 +237,6 @@
         "node_modules/named-js-regexp/lib/named-js-regexp.js",
         "node_modules/os-tmpdir/index.js",
         "node_modules/sb-callsite/lib/main.js",
-        "node_modules/sb-exec/decls/jasmine.js",
         "node_modules/sb-exec/lib/helpers.js",
         "node_modules/sb-exec/lib/index.js",
         "node_modules/sb-exec/lib/types.js",
@@ -235,6 +254,8 @@
         "node_modules/atom-linter/.eslintrc.json",
         "node_modules/atom-linter/package.json",
         "node_modules/atom-package-deps/.eslintrc.json",
+        "node_modules/atom-package-deps/node_modules/sb-exec/.eslintrc.json",
+        "node_modules/atom-package-deps/node_modules/sb-exec/package.json",
         "node_modules/atom-package-deps/package.json",
         "node_modules/atom-package-path/package.json",
         "node_modules/consistent-env/.eslintrc.json",
@@ -266,7 +287,7 @@
           "spec"
         ],
         "dependencies": {
-          "atom-linter": "^9.0.0",
+          "atom-linter": "^10.0.0",
           "atom-package-deps": "^4.0.1"
         }
       },
@@ -277,7 +298,7 @@
         ],
         "dependencies": {
           "named-js-regexp": "^1.3.1",
-          "sb-exec": "^3.1.0",
+          "sb-exec": "^4.0.0",
           "sb-promisify": "^2.0.1",
           "tmp": "~0.0.28"
         }
@@ -292,6 +313,18 @@
           "sb-exec": "^3.0.1",
           "sb-fs": "^3.0.0",
           "semver": "^5.3.0"
+        }
+      },
+      {
+        "paths": [
+          "node_modules/atom-package-deps/node_modules/sb-exec",
+          "node_modules/atom-package-deps/node_modules/sb-exec/decls",
+          "node_modules/atom-package-deps/node_modules/sb-exec/lib"
+        ],
+        "dependencies": {
+          "consistent-env": "^1.2.0",
+          "lodash.uniq": "^4.5.0",
+          "sb-npm-path": "^2.0.0"
         }
       },
       {
@@ -316,7 +349,6 @@
       {
         "paths": [
           "node_modules/sb-exec",
-          "node_modules/sb-exec/decls",
           "node_modules/sb-exec/lib"
         ],
         "dependencies": {
@@ -360,7 +392,7 @@
           "node_modules/tmp"
         ],
         "dependencies": {
-          "os-tmpdir": "~1.0.1"
+          "os-tmpdir": "~1.0.2"
         }
       }
     ]

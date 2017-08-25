@@ -1,5 +1,6 @@
 "*":
   core:
+    automaticallyUpdate: false
     disabledPackages: [
       "linter-twig"
     ]
@@ -10,7 +11,7 @@
     ]
   editor:
     autoIndentOnPaste: false
-    fontSize: 16
+    fontSize: 19
     softWrap: true
   "exception-reporting":
     userId: "04b4ef68-ef77-4034-814f-5fce2d6bf2d4"
@@ -21,7 +22,6 @@
   "linter-twig": {}
   "linter-ui-default":
     panelHeight: 69
-    showPanel: true
   wakatime:
     apikey: "Saved in your ~/.wakatime.cfg file"
   welcome:
