@@ -6,12 +6,10 @@
     ]
     telemetryConsent: "no"
     themes: [
-      "one-dark-ui"
-      "ninja-ui-syntax"
+      "one-light-ui"
+      "apex-syntax"
     ]
   editor:
-    autoIndentOnPaste: false
-    fontSize: 19
     softWrap: true
   "exception-reporting":
     userId: "04b4ef68-ef77-4034-814f-5fce2d6bf2d4"
