@@ -1,6 +1,10 @@
 "*":
   core:
     automaticallyUpdate: false
+    customFileTypes:
+      "text.html.php": [
+        "theme"
+      ]
     disabledPackages: [
       "linter-twig"
     ]
@@ -10,6 +14,8 @@
       "apex-syntax"
     ]
   editor:
+    fontFamily: "Roboto Mono"
+    fontSize: 15
     softWrap: true
   "exception-reporting":
     userId: "04b4ef68-ef77-4034-814f-5fce2d6bf2d4"
@@ -21,6 +27,6 @@
   "linter-ui-default":
     panelHeight: 69
   wakatime:
-    apikey: "Saved in your ~/.wakatime.cfg file"
+    apikey: "Enter your api key..."
   welcome:
     showOnStartup: false

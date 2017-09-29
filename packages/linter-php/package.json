@@ -2,39 +2,39 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
+        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
-        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
+        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
+        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117725-31105-1892zri.t62giizfr"
+      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117821-29181-bofqrc.bmu2mg3nmi"
     ]
   ],
-  "_from": "../d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
-  "_id": "linter-php@1.4.0",
+  "_from": "../d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
+  "_id": "linter-php@1.5.0",
   "_inCache": true,
   "_location": "/linter-php",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
+    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
-    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
+    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
+    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
-  "_shasum": "f638f32acb4963347951907ebcb59fafec4de197",
+  "_resolved": "file:../d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
+  "_shasum": "a79edfe140644ac6ec783dfaa0a500fd6dd0d424",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31105-1ip4l65.fi571zto6r/package.tgz",
-  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117725-31105-1892zri.t62giizfr",
+  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
+  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117821-29181-bofqrc.bmu2mg3nmi",
   "activationHooks": [
     "language-php:grammar-used"
   ],
@@ -66,8 +66,8 @@
   },
   "description": "Lint PHP on the fly, using php -l",
   "devDependencies": {
-    "eslint": "^4.3.0",
-    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint": "^4.6.0",
+    "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
     "jasmine-fix": "^1.3.0"
   },
@@ -120,7 +120,7 @@
     "lint": "eslint .",
     "test": "apm test"
   },
-  "version": "1.4.0",
+  "version": "1.5.0",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -161,7 +161,7 @@
       },
       {
         "name": "named-js-regexp",
-        "version": "1.3.2",
+        "version": "1.3.3",
         "path": "node_modules/named-js-regexp/lib/named-js-regexp.js"
       },
       {

@@ -2,39 +2,39 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31109-6wgv3y.i1vhxv42t9/package.tgz",
+        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29185-ij7zps.7wnlot7qfr/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31109-6wgv3y.i1vhxv42t9/package.tgz",
-        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31109-6wgv3y.i1vhxv42t9/package.tgz",
+        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29185-ij7zps.7wnlot7qfr/package.tgz",
+        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29185-ij7zps.7wnlot7qfr/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117725-31109-1azbjvs.e45h6hto6r"
+      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117821-29185-2yx2mv.wzmb6e0zfr"
     ]
   ],
-  "_from": "../d-117725-31109-6wgv3y.i1vhxv42t9/package.tgz",
-  "_id": "linter-ui-default@1.6.7",
+  "_from": "../d-117821-29185-ij7zps.7wnlot7qfr/package.tgz",
+  "_id": "linter-ui-default@1.6.10",
   "_inCache": true,
   "_location": "/linter-ui-default",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31109-6wgv3y.i1vhxv42t9/package.tgz",
+    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29185-ij7zps.7wnlot7qfr/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31109-6wgv3y.i1vhxv42t9/package.tgz",
-    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31109-6wgv3y.i1vhxv42t9/package.tgz",
+    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29185-ij7zps.7wnlot7qfr/package.tgz",
+    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29185-ij7zps.7wnlot7qfr/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-117725-31109-6wgv3y.i1vhxv42t9/package.tgz",
-  "_shasum": "07403d5721893afd753faf415a43345538154ca9",
+  "_resolved": "file:../d-117821-29185-ij7zps.7wnlot7qfr/package.tgz",
+  "_shasum": "032008e7df39bb3f54de72c98e58a166f7638d47",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117725-31109-6wgv3y.i1vhxv42t9/package.tgz",
-  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117725-31109-1azbjvs.e45h6hto6r",
+  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29185-ij7zps.7wnlot7qfr/package.tgz",
+  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117821-29185-2yx2mv.wzmb6e0zfr",
   "bugs": {
     "url": "https://github.com/steelbrain/linter-ui-default/issues"
   },
@@ -192,7 +192,7 @@
     "rimraf": "^2.5.4"
   },
   "engines": {
-    "atom": ">=1.17.0 <2.0.0"
+    "atom": ">=1.19.0 <2.0.0"
   },
   "homepage": "https://github.com/steelbrain/linter-ui-default#readme",
   "keywords": [
@@ -228,7 +228,7 @@
   "scripts": {
     "test": "(apm test) && (flow check) && (eslint . )"
   },
-  "version": "1.6.7",
+  "version": "1.6.10",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [
@@ -274,12 +274,12 @@
       },
       {
         "name": "fbjs",
-        "version": "0.8.14",
+        "version": "0.8.15",
         "path": "node_modules/fbjs/index.js"
       },
       {
         "name": "iconv-lite",
-        "version": "0.4.18",
+        "version": "0.4.19",
         "path": "node_modules/iconv-lite/lib/index.js"
       },
       {
@@ -319,7 +319,7 @@
       },
       {
         "name": "node-fetch",
-        "version": "1.7.2",
+        "version": "1.7.3",
         "path": "node_modules/node-fetch/index.js"
       },
       {
