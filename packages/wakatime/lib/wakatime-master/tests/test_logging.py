@@ -10,7 +10,6 @@ import logging
 import os
 import time
 import shutil
-import sys
 from testfixtures import log_capture
 from . import utils
 
@@ -42,8 +41,7 @@ class LoggingTestCase(utils.TestCase):
 
         retval = execute(args)
         self.assertEquals(retval, 102)
-        self.assertEquals(sys.stdout.getvalue(), '')
-        self.assertEquals(sys.stderr.getvalue(), '')
+        self.assertNothingPrinted()
 
         self.assertEquals(logging.WARNING, logging.getLogger('WakaTime').level)
         logfile = os.path.realpath(os.path.expanduser('~/.wakatime.log'))
@@ -71,14 +69,13 @@ class LoggingTestCase(utils.TestCase):
             entity = 'tests/samples/codefiles/python.py'
             config = 'tests/samples/configs/good_config.cfg'
             logfile = os.path.realpath(fh.name)
-            args = ['--file', entity, '--config', config, '--time', now, '--logfile', logfile]
+            args = ['--file', entity, '--config', config, '--time', now, '--log-file', logfile]
 
             execute(args)
 
             retval = execute(args)
             self.assertEquals(retval, 102)
-            self.assertEquals(sys.stdout.getvalue(), '')
-            self.assertEquals(sys.stderr.getvalue(), '')
+            self.assertNothingPrinted()
 
             self.assertEquals(logging.WARNING, logging.getLogger('WakaTime').level)
             self.assertEquals(logfile, logging.getLogger('WakaTime').handlers[0].baseFilename)
@@ -101,7 +98,7 @@ class LoggingTestCase(utils.TestCase):
             config = 'tests/samples/configs/good_config.cfg'
             shutil.copy(config, os.path.join(tempdir, '.wakatime.cfg'))
             config = os.path.realpath(os.path.join(tempdir, '.wakatime.cfg'))
-            logfile = os.path.realpath(os.path.join(tempdir, '.wakatime.log'))
+            expected_logfile = os.path.realpath(os.path.join(tempdir, '.wakatime.log'))
 
             with utils.mock.patch('wakatime.main.os.environ.get') as mock_env:
                 mock_env.return_value = tempdir
@@ -112,12 +109,11 @@ class LoggingTestCase(utils.TestCase):
 
                 retval = execute(args)
                 self.assertEquals(retval, 102)
-                self.assertEquals(sys.stdout.getvalue(), '')
-                self.assertEquals(sys.stderr.getvalue(), '')
+                self.assertNothingPrinted()
 
                 self.assertEquals(logging.WARNING, logging.getLogger('WakaTime').level)
-                actual_logfile = os.path.realpath(logging.getLogger('WakaTime').handlers[0].baseFilename)
-                self.assertEquals(logfile, actual_logfile)
+                logfile = os.path.realpath(logging.getLogger('WakaTime').handlers[0].baseFilename)
+                self.assertEquals(logfile, expected_logfile)
                 logs.check()
 
     @log_capture()
@@ -135,13 +131,13 @@ class LoggingTestCase(utils.TestCase):
 
         retval = execute(args)
         self.assertEquals(retval, 102)
-        self.assertEquals(sys.stdout.getvalue(), '')
-        self.assertEquals(sys.stderr.getvalue(), '')
+        self.assertNothingPrinted()
 
         self.assertEquals(logging.DEBUG, logging.getLogger('WakaTime').level)
         logfile = os.path.realpath(os.path.expanduser('~/.wakatime.log'))
         self.assertEquals(logfile, logging.getLogger('WakaTime').handlers[0].baseFilename)
         output = [u(' ').join(x) for x in logs.actual()]
+
         expected = u('WakaTime WARNING Regex error (unbalanced parenthesis) for include pattern: \\(invalid regex)')
         if self.isPy35OrNewer:
             expected = u('WakaTime WARNING Regex error (unbalanced parenthesis at position 15) for include pattern: \\(invalid regex)')
@@ -150,7 +146,7 @@ class LoggingTestCase(utils.TestCase):
         if self.isPy35OrNewer:
             expected = u('WakaTime WARNING Regex error (unbalanced parenthesis at position 15) for exclude pattern: \\(invalid regex)')
         self.assertEquals(output[1], expected)
-        self.assertEquals(output[2], u('WakaTime DEBUG Sending heartbeat to api at https://api.wakatime.com/api/v1/heartbeats'))
+        self.assertEquals(output[2], u('WakaTime DEBUG Sending heartbeats to api at https://api.wakatime.com/api/v1/users/current/heartbeats.bulk'))
         self.assertIn('Python', output[3])
         self.assertIn('response_code', output[4])
 
@@ -172,8 +168,7 @@ class LoggingTestCase(utils.TestCase):
 
             retval = execute(args)
             self.assertEquals(retval, 102)
-            self.assertEquals(sys.stdout.getvalue(), '')
-            self.assertEquals(sys.stderr.getvalue(), '')
+            self.assertNothingPrinted()
 
             log_output = u("\n").join([u(' ').join(x) for x in logs.actual()])
             self.assertIn(u('WakaTime DEBUG Traceback (most recent call last):'), log_output)
@@ -197,8 +192,7 @@ class LoggingTestCase(utils.TestCase):
 
             retval = execute(args)
             self.assertEquals(retval, 102)
-            self.assertEquals(sys.stdout.getvalue(), '')
-            self.assertEquals(sys.stderr.getvalue(), '')
+            self.assertNothingPrinted()
 
             log_output = u("\n").join([u(' ').join(x) for x in logs.actual()])
             self.assertEquals(u(''), log_output)

@@ -6,18 +6,25 @@ import sys
 import tempfile
 
 from wakatime.compat import u
+from wakatime.packages.requests.models import Response
 
 
 try:
     import mock
+    from mock import ANY
 except ImportError:
     import unittest.mock as mock
+    from unittest.mock import ANY
 try:
     # Python 2.6
     import unittest2 as unittest
 except ImportError:
     # Python >= 2.7
     import unittest
+try:
+    from .packages import simplejson as json
+except (ImportError, SyntaxError):
+    import json
 
 
 class TestCase(unittest.TestCase):
@@ -26,6 +33,8 @@ class TestCase(unittest.TestCase):
     def setUp(self):
         # disable logging while testing
         logging.disable(logging.CRITICAL)
+
+        self.maxDiff = 1000
 
         self.patched = {}
         if hasattr(self, 'patch_these'):
@@ -49,14 +58,103 @@ class TestCase(unittest.TestCase):
     def normalize_list(self, items):
         return sorted([u(x) for x in items])
 
-    def assertListsEqual(self, first_list, second_list):
-        self.assertEquals(self.normalize_list(first_list), self.normalize_list(second_list))
+    def assertListsEqual(self, first_list, second_list, message=None):
+        if isinstance(first_list, list) and isinstance(second_list, list):
+            if message:
+                self.assertEquals(self.normalize_list(first_list), self.normalize_list(second_list), message)
+            else:
+                self.assertEquals(self.normalize_list(first_list), self.normalize_list(second_list))
+        else:
+            if message:
+                self.assertEquals(first_list, second_list, message)
+            else:
+                self.assertEquals(first_list, second_list)
+
+    def assertHeartbeatNotSent(self):
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].assert_not_called()
+
+    def assertHeartbeatSent(self, heartbeat=None, extra_heartbeats=[], headers=None, cert=None, proxies={}, stream=False, timeout=60, verify=True):
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].assert_called_once_with(
+            ANY, cert=cert, proxies=proxies, stream=stream, timeout=timeout, verify=verify,
+        )
+
+        body = json.loads(self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].call_args[0][0].body)
+        self.assertIsInstance(body, list)
+
+        if headers:
+            actual_headers = self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].call_args[0][0].headers
+            for key, val in headers.items():
+                self.assertEquals(actual_headers.get(key), val, u('Expected api request to have header {0}={1}, instead {0}={2}').format(u(key), u(actual_headers.get(key)), u(val)))
+
+        if heartbeat:
+            keys = list(body[0].keys()) + list(heartbeat.keys())
+            for key in keys:
+                if isinstance(heartbeat.get(key), list):
+                    self.assertListsEqual(heartbeat.get(key), body[0].get(key), u('Expected heartbeat to be sent with {0}={1}, instead {0}={2}').format(u(key), u(heartbeat.get(key)), u(body[0].get(key))))
+                else:
+                    self.assertEquals(heartbeat.get(key), body[0].get(key), u('Expected heartbeat to be sent with {1} {0}={2}, instead {3} {0}={4}').format(u(key), type(heartbeat.get(key)).__name__, u(heartbeat.get(key)), type(body[0].get(key)).__name__, u(body[0].get(key))))
+
+        if extra_heartbeats:
+            for i in range(len(extra_heartbeats)):
+                keys = list(body[i + 1].keys()) + list(extra_heartbeats[i].keys())
+                for key in keys:
+                    if isinstance(extra_heartbeats[i].get(key), list):
+                        self.assertListsEqual(extra_heartbeats[i].get(key), body[i + 1].get(key), u('Expected extra heartbeat {3} to be sent with {0}={1}, instead {0}={2}').format(u(key), u(extra_heartbeats[i].get(key)), u(body[i + 1].get(key)), i))
+                    else:
+                        self.assertEquals(extra_heartbeats[i].get(key), body[i + 1].get(key), u('Expected extra heartbeat {5} to be sent with {1} {0}={2}, instead {3} {0}={4}').format(u(key), type(extra_heartbeats[i].get(key)).__name__, u(extra_heartbeats[i].get(key)), type(body[i + 1].get(key)).__name__, u(body[i + 1].get(key)), i))
+
+    def assertSessionCacheUntouched(self):
+        self.patched['wakatime.session_cache.SessionCache.delete'].assert_not_called()
+        self.patched['wakatime.session_cache.SessionCache.get'].assert_not_called()
+        self.patched['wakatime.session_cache.SessionCache.save'].assert_not_called()
+
+    def assertSessionCacheDeleted(self):
+        self.patched['wakatime.session_cache.SessionCache.delete'].assert_called_once_with()
+        self.patched['wakatime.session_cache.SessionCache.get'].assert_called_once_with()
+        self.patched['wakatime.session_cache.SessionCache.save'].assert_not_called()
+
+    def assertSessionCacheSaved(self):
+        self.patched['wakatime.session_cache.SessionCache.save'].assert_called_once_with(ANY)
+        self.patched['wakatime.session_cache.SessionCache.get'].assert_called_once_with()
+        self.patched['wakatime.session_cache.SessionCache.delete'].assert_not_called()
+
+    def assertHeartbeatSavedOffline(self):
+        self.patched['wakatime.offlinequeue.Queue.push'].assert_called_once_with(ANY)
+        self.patched['wakatime.offlinequeue.Queue.pop'].assert_not_called()
+
+    def assertHeartbeatNotSavedOffline(self):
+        self.patched['wakatime.offlinequeue.Queue.push'].assert_not_called()
+
+    def assertOfflineHeartbeatsSynced(self):
+        self.patched['wakatime.offlinequeue.Queue.pop'].assert_called()
+
+    def assertOfflineHeartbeatsNotSynced(self):
+        self.patched['wakatime.offlinequeue.Queue.pop'].assert_not_called()
+
+    def assertNothingPrinted(self):
+        self.assertEquals(sys.stdout.getvalue(), '')
+        self.assertEquals(sys.stderr.getvalue(), '')
+
+    def getPrintedOutput(self):
+        return sys.stdout.getvalue() or '' + sys.stderr.getvalue() or ''
+
+    def assertNothingLogged(self, logs):
+        self.assertEquals(self.getLogOutput(logs), '')
+
+    def getLogOutput(self, logs):
+        return u("\n").join([u(' ').join(x) for x in logs.actual()])
 
     @property
     def isPy35OrNewer(self):
         if sys.version_info[0] > 3:
             return True
         return (sys.version_info[0] >= 3 and sys.version_info[1] >= 5)
+
+    @property
+    def isPy33OrNewer(self):
+        if sys.version_info[0] > 3:
+            return True
+        return (sys.version_info[0] >= 3 and sys.version_info[1] >= 3)
 
 
 try:
@@ -65,6 +163,7 @@ try:
 except ImportError:
     # Python < 3
     import shutil
+
     class TemporaryDirectory(object):
         """Context manager for tempfile.mkdtemp().
 
@@ -111,8 +210,10 @@ class DynamicIterable(object):
         self.raise_on_calls = raise_on_calls
         self.index = 0
         self.data = data
+
     def __iter__(self):
         return self
+
     def __next__(self):
         if self.raise_on_calls and self.called < len(self.raise_on_calls) and self.raise_on_calls[self.called]:
             raise self.raise_on_calls[self.called]
@@ -125,5 +226,34 @@ class DynamicIterable(object):
         if not self.max_calls or self.called <= self.max_calls:
             return val
         return None
+
     def next(self):
         return self.__next__()
+
+
+class CustomResponse(Response):
+    response_code = 201
+    response_text = '{"responses": [[null,201]]}'
+    limit = 0
+    second_response_code = 0
+    second_response_text = None
+
+    _count = 0
+
+    @property
+    def status_code(self):
+        if self.limit and self._count > self.limit:
+            return self.second_response_code
+        self._count += 1
+        return self.response_code
+
+    @status_code.setter
+    def status_code(self, value):
+        pass
+
+    @property
+    def text(self):
+        if self.limit and self._count > self.limit:
+            return self.second_response_text if self.second_response_text is not None else self.response_text
+        self._count += 1
+        return self.response_text

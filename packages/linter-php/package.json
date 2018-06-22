@@ -2,39 +2,39 @@
   "_args": [
     [
       {
-        "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
+        "raw": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11792-97409-6685vh.nkvo14te29/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
-        "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
+        "rawSpec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11792-97409-6685vh.nkvo14te29/package.tgz",
+        "spec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11792-97409-6685vh.nkvo14te29/package.tgz",
         "type": "local"
       },
-      "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117821-29181-bofqrc.bmu2mg3nmi"
+      "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/apm-install-dir-11792-97409-d3e4xj.y72iou5wmi"
     ]
   ],
-  "_from": "../d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
-  "_id": "linter-php@1.5.0",
+  "_from": "../d-11792-97409-6685vh.nkvo14te29/package.tgz",
+  "_id": "linter-php@1.5.1",
   "_inCache": true,
   "_location": "/linter-php",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
+    "raw": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11792-97409-6685vh.nkvo14te29/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
-    "spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
+    "rawSpec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11792-97409-6685vh.nkvo14te29/package.tgz",
+    "spec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11792-97409-6685vh.nkvo14te29/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
-  "_shasum": "a79edfe140644ac6ec783dfaa0a500fd6dd0d424",
+  "_resolved": "file:../d-11792-97409-6685vh.nkvo14te29/package.tgz",
+  "_shasum": "9f469c59dc0d252c5f987945109b0dd041ee1313",
   "_shrinkwrap": null,
-  "_spec": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/d-117821-29181-1gp7vqc.28cq96n7b9/package.tgz",
-  "_where": "/private/var/folders/8v/6r4b8sqd5z928mqg8sn7rtch0000gp/T/apm-install-dir-117821-29181-bofqrc.bmu2mg3nmi",
+  "_spec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11792-97409-6685vh.nkvo14te29/package.tgz",
+  "_where": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/apm-install-dir-11792-97409-d3e4xj.y72iou5wmi",
   "activationHooks": [
     "language-php:grammar-used"
   ],
@@ -120,7 +120,7 @@
     "lint": "eslint .",
     "test": "apm test"
   },
-  "version": "1.5.0",
+  "version": "1.5.1",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [

@@ -7,6 +7,7 @@ let semver;
 let minimatch;
 let helpers;
 let path;
+let fs;
 
 function loadDeps() {
   if (!semver) {
@@ -20,6 +21,9 @@ function loadDeps() {
   }
   if (!path) {
     path = require('path');
+  }
+  if (!fs) {
+    fs = require('fs');
   }
 }
 
@@ -94,6 +98,16 @@ const scopeAvailable = (scope, available) => {
     grammarScopes.push(scope);
   }
 };
+
+const getFileRealPath = async filePath =>
+  new Promise((resolve, reject) => {
+    fs.realpath(filePath, (err, resolvedPath) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(resolvedPath);
+    });
+  });
 
 export default {
   activate() {
@@ -190,9 +204,8 @@ export default {
 
         // Check if a local PHPCS executable is available
         if (this.autoExecutableSearch) {
-          const projExecutable = await helpers.findCachedAsync(
-            fileDir, ['vendor/bin/phpcs.bat', 'vendor/bin/phpcs'],
-          );
+          const phpcsNames = ['vendor/bin/phpcs.bat', 'vendor/bin/phpcs'];
+          const projExecutable = await helpers.findCachedAsync(fileDir, phpcsNames);
 
           if (projExecutable !== null) {
             executable = projExecutable;
@@ -225,9 +238,11 @@ export default {
         }
 
         // Check if a config file exists and handle it
-        const confFile = await helpers.findAsync(fileDir,
-          ['phpcs.xml', 'phpcs.xml.dist', 'phpcs.ruleset.xml', 'ruleset.xml'],
-        );
+        const confFileNames = [
+          '.phpcs.xml', '.phpcs.xml.dist', 'phpcs.xml', 'phpcs.xml.dist',
+          'phpcs.ruleset.xml', 'ruleset.xml',
+        ];
+        const confFile = await helpers.findAsync(fileDir, confFileNames);
         if (this.disableWhenNoConfigFile && !confFile) {
           return [];
         }
@@ -315,16 +330,17 @@ export default {
 
         let messages;
         if (semver.gte(version, '2.0.0')) {
-          if (!data.files[filePath]) {
+          const fileRealPath = await getFileRealPath(filePath);
+          if (!data.files[fileRealPath]) {
             return [];
           }
-          messages = data.files[filePath].messages;
+          ({ messages } = data.files[fileRealPath]);
         } else {
           // PHPCS v1 can't associate a filename with STDIN input
           if (!data.files.STDIN) {
             return [];
           }
-          messages = data.files.STDIN.messages;
+          ({ messages } = data.files.STDIN);
         }
 
         return messages.map((message) => {

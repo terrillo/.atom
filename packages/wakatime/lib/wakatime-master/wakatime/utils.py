@@ -14,6 +14,7 @@ import platform
 import logging
 import os
 import re
+import socket
 import sys
 
 from .__about__ import __version__
@@ -48,7 +49,7 @@ def should_exclude(entity, include, exclude):
     return False
 
 
-def get_user_agent(plugin):
+def get_user_agent(plugin=None):
     ver = sys.version_info
     python_version = '%d.%d.%d.%s.%d' % (ver[0], ver[1], ver[2], ver[3], ver[4])
     user_agent = u('wakatime/{ver} ({platform}) Python{py_ver}').format(
@@ -77,3 +78,19 @@ def format_file_path(filepath):
     except:  # pragma: nocover
         pass
     return filepath
+
+
+def get_hostname(args):
+    return args.hostname or socket.gethostname()
+
+
+def find_project_file(path):
+    path = os.path.realpath(path)
+    if os.path.isfile(path):
+        path = os.path.split(path)[0]
+    if os.path.isfile(os.path.join(path, '.wakatime-project')):
+        return os.path.join(path, '.wakatime-project')
+    split_path = os.path.split(path)
+    if split_path[1] == '':
+        return None
+    return find_project_file(split_path[0])

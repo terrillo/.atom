@@ -1,12 +1,9 @@
 'use babel';
 
-import path from 'path';
 import { CompositeDisposable } from 'atom';
 
 import config from './config';
-import Blamer from './util/Blamer';
 import BlameGutter from './util/BlameGutter';
-import errorController from './controllers/errorController';
 
 /**
  * Main Package Module
@@ -50,8 +47,8 @@ export default {
 
     // toggle visiblity of the active gutter
     gutter.toggleVisibility()
-      .catch(e => {
-        console.error(e);
+      .catch((e) => {
+        console.error(e); // eslint-disable-line no-console
       });
   },
 

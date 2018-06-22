@@ -1,0 +1,65 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11804-41944-15ay906.daphc9pb9/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11804-41944-15ay906.daphc9pb9/package.tgz",
+        "spec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11804-41944-15ay906.daphc9pb9/package.tgz",
+        "type": "local"
+      },
+      "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/apm-install-dir-11804-41944-19zuxz5.nabwm0wwmi"
+    ]
+  ],
+  "_from": "../d-11804-41944-15ay906.daphc9pb9/package.tgz",
+  "_id": "fold-lines@0.2.2",
+  "_inCache": true,
+  "_location": "/fold-lines",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11804-41944-15ay906.daphc9pb9/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11804-41944-15ay906.daphc9pb9/package.tgz",
+    "spec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11804-41944-15ay906.daphc9pb9/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-11804-41944-15ay906.daphc9pb9/package.tgz",
+  "_shasum": "b9c6cf20f1d9923d0f0ede1c808d806bc99565b3",
+  "_shrinkwrap": null,
+  "_spec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-11804-41944-15ay906.daphc9pb9/package.tgz",
+  "_where": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/apm-install-dir-11804-41944-19zuxz5.nabwm0wwmi",
+  "bugs": {
+    "url": "https://github.com/alysov/fold-lines/issues"
+  },
+  "dependencies": {},
+  "description": "Display full-width fold lines, similar to Notepad++ or Komodo editors.",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">=1.3.0 <2.0.0"
+  },
+  "homepage": "https://github.com/alysov/fold-lines#readme",
+  "keywords": [
+    "fold",
+    "lines",
+    "Notepad++",
+    "Komodo"
+  ],
+  "license": "MIT",
+  "main": "./lib/fold-lines",
+  "name": "fold-lines",
+  "optionalDependencies": {},
+  "readme": "# Fold Lines\n\nDisplay full-width fold lines, similar to Notepad++ or Komodo editors.\n\n![Underline all the folds!](http://i.imgur.com/eCu5VW4.gif)\n\nThe solution is rather simple, really: It adds a \"*folded*\" class to the editor, similar to how the\nline number is marked.  Therefore, to modify the style of the line marker, you could do something\nlike this in your styles.less file:\n\n```sass\natom-text-editor.editor .line.folded {\n  border-bottom: 1px dashed salmon;  // Mmm.. salmon..\n}\n```\n\nTo remove underline from the line number marker:\n```sass\natom-text-editor.editor .line-number.folded {\n  border-bottom: none;\n}\n```\n\nTo hide default fold marker (which I feel to be redundant while fold lines are visible):\n```sass\natom-text-editor.editor .fold-marker {\n  display: none;\n}\n```\n\n### Goals / TODO:\n* [ ] Write specs\n* [ ] Config option to hide default fold marker\n* [ ] Fold lines in minimap.  Hmm&hellip;\n* [ ] Get mainline Atom to include this\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alysov/fold-lines.git"
+  },
+  "version": "0.2.2"
+}

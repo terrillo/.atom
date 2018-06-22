@@ -1,0 +1,67 @@
+{% if not type %}
+  {% set type = 'cb' %}
+{% endif %}
+
+{% if not href %}
+  {% set href = '#' %}
+{% endif %}
+
+{% if not target %}
+  {% set target = '_self' %}
+{% endif %}
+
+<div {% if identification %} identification="{{ identification }}"{% endif %} class="relative mn-col-4 md-col-6 xs-col-12 sm-col-12 p1-5" {% if hidden %}hidden{% endif %}>
+  {% if favorite %}
+	<div class="absolute right-0 top-0 u-show-parent" style="width:32px; height:32px;">
+		<div class="fa-stack cursor-pointer">
+      {%
+        include '@atoms/icons/icons.html.twig' with {
+          type: 'circle',
+          class: 'font-size-h4 mt0-5 fa-stack-2x color-white',
+        }
+      %}
+			{%
+        include '@atoms/icons/icons.html.twig' with {
+          type: 'times-circle',
+          class: 'font-size-h3 fa-stack-1x u-show-child js-close-fav',
+        }
+			%}
+		</div>
+  </div>
+	{% endif %}
+
+	<a href="{{ href }}" target="{{ target }}" class="block text-decoration-none" {% if hidden %}hidden{% endif %}>
+    {% if src %}
+      <div class="mb2">
+        {% include '@atoms/images/images.html.twig' %}
+      </div>
+    {% endif %}
+		<h4 class="m0 p0 pb1-5 font-size-h4 font-header color-black hover-color-secondary line-height-2 transition-color">{{ title | raw }}</h4>
+    {% if type == "vtb" %}
+    <p identification="copy" class="m0 p0 pb1-5 color-medium-gry sans line-height-4">{{ copy | striptags('<em><b><sup><sub>') | raw }}</p>
+		{% else %}
+		<p identification="copy" class="m0 p0 pb1-5 color-medium-gry serif line-height-4">{{ copy | striptags('<em><b><sup><sub>') | raw }}</p>
+		{% endif %}
+	</a>
+
+  {% if tag %}
+    <div class="block {% if article_author %}pb1-5{% endif %}">
+      {% if node %}
+        {% include '@partials/node--tags.html.twig' %}
+      {% else %}
+        {%
+          include '@atoms/tag/tag.html.twig' with {
+            tag: item.tag
+          }
+        %}
+      {% endif %}
+    </div>
+  {% endif %}
+
+	{% if article_author %}
+  <div class="pt1">
+  	{% include '@atoms/article-author/article-author.html.twig' %}
+  </div>
+	{% endif %}
+
+</div>

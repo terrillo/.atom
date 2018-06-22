@@ -9,6 +9,7 @@
     :license: BSD, see LICENSE for more details.
 """
 
+
 import codecs
 import sys
 
@@ -82,7 +83,7 @@ except ImportError:  # pragma: nocover
         if name.startswith('.'):
             if not package:
                 raise TypeError("relative imports require the 'package' "
-                                + "argument")
+                                "argument")
             level = 0
             for character in name:
                 if character != '.':
@@ -91,3 +92,9 @@ except ImportError:  # pragma: nocover
             name = _resolve_name(name[level:], package, level)
         __import__(name)
         return sys.modules[name]
+
+
+try:
+    from .packages import simplejson as json
+except (ImportError, SyntaxError):  # pragma: nocover
+    import json

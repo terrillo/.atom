@@ -4,6 +4,7 @@
 from wakatime.main import execute
 from wakatime.packages import requests
 
+import base64
 import logging
 import os
 import time
@@ -14,25 +15,15 @@ import uuid
 from testfixtures import log_capture
 from wakatime.compat import u, is_py3
 from wakatime.constants import (
-    API_ERROR,
     AUTH_ERROR,
     CONFIG_FILE_PARSE_ERROR,
     SUCCESS,
 )
 from wakatime.packages.requests.models import Response
-from . import utils
-
-try:
-    from .packages import simplejson as json
-except (ImportError, SyntaxError):
-    import json
-try:
-    from mock import ANY
-except ImportError:
-    from unittest.mock import ANY
+from .utils import mock, ANY, CustomResponse, TemporaryDirectory, TestCase
 
 
-class ConfigsTestCase(utils.TestCase):
+class ConfigsTestCase(TestCase):
     patch_these = [
         'wakatime.packages.requests.adapters.HTTPAdapter.send',
         'wakatime.offlinequeue.Queue.push',
@@ -45,20 +36,18 @@ class ConfigsTestCase(utils.TestCase):
     ]
 
     def test_config_file_not_passed_in_command_line_args(self):
-        response = Response()
-        response.status_code = 201
-        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
 
-        with utils.TemporaryDirectory() as tempdir:
+        with TemporaryDirectory() as tempdir:
             entity = 'tests/samples/codefiles/emptyfile.txt'
             shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
             entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
-            args = ['--file', entity, '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--log-file', '~/.wakatime.log']
 
-            with utils.mock.patch('wakatime.configs.os.environ.get') as mock_env:
+            with mock.patch('wakatime.configs.os.environ.get') as mock_env:
                 mock_env.return_value = None
 
-                with utils.mock.patch('wakatime.configs.open') as mock_open:
+                with mock.patch('wakatime.configs.open') as mock_open:
                     mock_open.side_effect = IOError('')
 
                     with self.assertRaises(SystemExit) as e:
@@ -71,12 +60,13 @@ class ConfigsTestCase(utils.TestCase):
         self.assertEquals(sys.stderr.getvalue(), expected_stderr)
         self.patched['wakatime.session_cache.SessionCache.get'].assert_not_called()
 
-    def test_config_file_from_env(self):
-        response = Response()
-        response.status_code = 201
-        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
+    @log_capture()
+    def test_config_file_from_env(self, logs):
+        logging.disable(logging.NOTSET)
 
-        with utils.TemporaryDirectory() as tempdir:
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
+
+        with TemporaryDirectory() as tempdir:
             entity = 'tests/samples/codefiles/emptyfile.txt'
             shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
             entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
@@ -84,34 +74,33 @@ class ConfigsTestCase(utils.TestCase):
             shutil.copy(config, os.path.join(tempdir, '.wakatime.cfg'))
             config = os.path.realpath(os.path.join(tempdir, '.wakatime.cfg'))
 
-            with utils.mock.patch('wakatime.configs.os.environ.get') as mock_env:
+            with mock.patch('wakatime.configs.os.environ.get') as mock_env:
                 mock_env.return_value = tempdir
 
-                args = ['--file', entity, '--logfile', '~/.wakatime.log']
+                args = ['--file', entity, '--log-file', '~/.wakatime.log']
                 retval = execute(args)
                 self.assertEquals(retval, SUCCESS)
-                expected_stdout = open('tests/samples/output/main_test_good_config_file').read()
+                expected_stdout = open('tests/samples/output/configs_test_good_config_file').read()
                 traceback_file = os.path.realpath('wakatime/arguments.py')
                 lineno = int(re.search(r' line (\d+),', sys.stdout.getvalue()).group(1))
                 self.assertEquals(sys.stdout.getvalue(), expected_stdout.format(file=traceback_file, lineno=lineno))
                 self.assertEquals(sys.stderr.getvalue(), '')
 
-                self.patched['wakatime.session_cache.SessionCache.get'].assert_called_once_with()
-                self.patched['wakatime.session_cache.SessionCache.delete'].assert_not_called()
-                self.patched['wakatime.session_cache.SessionCache.save'].assert_called_once_with(ANY)
+                self.assertHeartbeatSent(proxies=ANY, verify=ANY)
 
-                self.patched['wakatime.offlinequeue.Queue.push'].assert_not_called()
-                self.patched['wakatime.offlinequeue.Queue.pop'].assert_called_once_with()
+                self.assertHeartbeatNotSavedOffline()
+                self.assertOfflineHeartbeatsSynced()
+                self.assertSessionCacheSaved()
 
     def test_missing_config_file(self):
         config = 'foo'
 
-        with utils.TemporaryDirectory() as tempdir:
+        with TemporaryDirectory() as tempdir:
             entity = 'tests/samples/codefiles/emptyfile.txt'
             shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
             entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
 
-            args = ['--file', entity, '--config', config, '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--config', config, '--log-file', '~/.wakatime.log']
             with self.assertRaises(SystemExit) as e:
                 execute(args)
 
@@ -125,20 +114,18 @@ class ConfigsTestCase(utils.TestCase):
         self.patched['wakatime.session_cache.SessionCache.get'].assert_not_called()
 
     def test_good_config_file(self):
-        response = Response()
-        response.status_code = 201
-        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
 
-        with utils.TemporaryDirectory() as tempdir:
+        with TemporaryDirectory() as tempdir:
             entity = 'tests/samples/codefiles/emptyfile.txt'
             shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
             entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
 
             config = 'tests/samples/configs/has_everything.cfg'
-            args = ['--file', entity, '--config', config, '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--config', config, '--log-file', '~/.wakatime.log']
             retval = execute(args)
             self.assertEquals(retval, SUCCESS)
-            expected_stdout = open('tests/samples/output/main_test_good_config_file').read()
+            expected_stdout = open('tests/samples/output/configs_test_good_config_file').read()
             traceback_file = os.path.realpath('wakatime/arguments.py')
             lineno = int(re.search(r' line (\d+),', sys.stdout.getvalue()).group(1))
             self.assertEquals(sys.stdout.getvalue(), expected_stdout.format(file=traceback_file, lineno=lineno))
@@ -156,17 +143,15 @@ class ConfigsTestCase(utils.TestCase):
             apikey = XXX
         """
 
-        response = Response()
-        response.status_code = 201
-        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
 
-        with utils.TemporaryDirectory() as tempdir:
+        with TemporaryDirectory() as tempdir:
             entity = 'tests/samples/codefiles/emptyfile.txt'
             shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
             entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
 
             config = 'tests/samples/configs/sample_alternate_apikey.cfg'
-            args = ['--file', entity, '--config', config, '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--config', config, '--log-file', '~/.wakatime.log']
             retval = execute(args)
             self.assertEquals(retval, SUCCESS)
             self.assertEquals(sys.stdout.getvalue(), '')
@@ -183,13 +168,13 @@ class ConfigsTestCase(utils.TestCase):
     def test_bad_config_file(self, logs):
         logging.disable(logging.NOTSET)
 
-        with utils.TemporaryDirectory() as tempdir:
+        with TemporaryDirectory() as tempdir:
             entity = 'tests/samples/codefiles/emptyfile.txt'
             shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
             entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
 
             config = 'tests/samples/configs/bad_config.cfg'
-            args = ['--file', entity, '--config', config, '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--config', config, '--log-file', '~/.wakatime.log']
 
             with self.assertRaises(SystemExit) as e:
                 execute(args)
@@ -203,18 +188,18 @@ class ConfigsTestCase(utils.TestCase):
             expected = ''
             self.assertEquals(log_output, expected)
 
-
             self.patched['wakatime.offlinequeue.Queue.push'].assert_not_called()
             self.patched['wakatime.session_cache.SessionCache.get'].assert_not_called()
             self.patched['wakatime.session_cache.SessionCache.delete'].assert_not_called()
             self.patched['wakatime.session_cache.SessionCache.save'].assert_not_called()
 
-    def test_non_hidden_filename(self):
-        response = Response()
-        response.status_code = 0
-        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
+    @log_capture()
+    def test_non_hidden_filename(self, logs):
+        logging.disable(logging.NOTSET)
 
-        with utils.TemporaryDirectory() as tempdir:
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
+
+        with TemporaryDirectory() as tempdir:
             entity = 'tests/samples/codefiles/twolinefile.txt'
             shutil.copy(entity, os.path.join(tempdir, 'twolinefile.txt'))
             entity = os.path.realpath(os.path.join(tempdir, 'twolinefile.txt'))
@@ -222,232 +207,219 @@ class ConfigsTestCase(utils.TestCase):
             config = 'tests/samples/configs/good_config.cfg'
             key = str(uuid.uuid4())
 
-            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--log-file', '~/.wakatime.log']
 
             retval = execute(args)
-            self.assertEquals(retval, API_ERROR)
-            self.assertEquals(sys.stdout.getvalue(), '')
-            self.assertEquals(sys.stderr.getvalue(), '')
-
-            self.patched['wakatime.session_cache.SessionCache.get'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.delete'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.save'].assert_not_called()
+            self.assertEquals(retval, SUCCESS)
+            self.assertNothingPrinted()
+            self.assertNothingLogged(logs)
 
             heartbeat = {
-                'language': 'Text only',
-                'lines': 2,
                 'entity': os.path.realpath(entity),
-                'project': os.path.basename(os.path.abspath('.')),
+                'project': None,
+                'branch': None,
                 'time': float(now),
                 'type': 'file',
+                'cursorpos': None,
+                'dependencies': [],
+                'language': u('Text only'),
+                'lineno': None,
+                'lines': 2,
+                'is_write': False,
+                'user_agent': ANY,
             }
-            stats = {
-                u('cursorpos'): None,
-                u('dependencies'): [],
-                u('language'): u('Text only'),
-                u('lineno'): None,
-                u('lines'): 2,
-            }
+            self.assertHeartbeatSent(heartbeat)
 
-            self.patched['wakatime.offlinequeue.Queue.push'].assert_called_once_with(ANY, ANY, None)
-            for key, val in self.patched['wakatime.offlinequeue.Queue.push'].call_args[0][0].items():
-                self.assertEquals(heartbeat[key], val)
-            self.assertEquals(stats, json.loads(self.patched['wakatime.offlinequeue.Queue.push'].call_args[0][1]))
-            self.patched['wakatime.offlinequeue.Queue.pop'].assert_not_called()
+            self.assertHeartbeatNotSavedOffline()
+            self.assertOfflineHeartbeatsSynced()
+            self.assertSessionCacheSaved()
 
     def test_hide_all_filenames(self):
-        response = Response()
-        response.status_code = 0
-        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
 
-        with utils.TemporaryDirectory() as tempdir:
-            entity = 'tests/samples/codefiles/twolinefile.txt'
-            shutil.copy(entity, os.path.join(tempdir, 'twolinefile.txt'))
-            entity = os.path.realpath(os.path.join(tempdir, 'twolinefile.txt'))
+        with TemporaryDirectory() as tempdir:
+            entity = 'tests/samples/codefiles/python.py'
+            shutil.copy(entity, os.path.join(tempdir, 'python.py'))
+            entity = os.path.realpath(os.path.join(tempdir, 'python.py'))
             now = u(int(time.time()))
             config = 'tests/samples/configs/paranoid.cfg'
-            key = str(uuid.uuid4())
+            key = u(uuid.uuid4())
+            project = 'abcxyz'
 
-            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--log-file', '~/.wakatime.log', '--alternate-project', project]
 
             retval = execute(args)
-            self.assertEquals(retval, API_ERROR)
-            self.assertEquals(sys.stdout.getvalue(), '')
-            self.assertEquals(sys.stderr.getvalue(), '')
-
-            self.patched['wakatime.session_cache.SessionCache.get'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.delete'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.save'].assert_not_called()
+            self.assertEquals(retval, SUCCESS)
+            self.assertNothingPrinted()
 
             heartbeat = {
-                'language': 'Text only',
-                'lines': 2,
-                'entity': 'HIDDEN.txt',
-                'project': os.path.basename(os.path.abspath('.')),
+                'language': 'Python',
+                'lines': None,
+                'entity': 'HIDDEN.py',
+                'project': project,
                 'time': float(now),
+                'is_write': False,
                 'type': 'file',
+                'dependencies': None,
+                'user_agent': ANY,
             }
-            stats = {
-                u('cursorpos'): None,
-                u('dependencies'): [],
-                u('language'): u('Text only'),
-                u('lineno'): None,
-                u('lines'): 2,
-            }
+            self.assertHeartbeatSent(heartbeat)
 
-            self.patched['wakatime.offlinequeue.Queue.push'].assert_called_once_with(ANY, ANY, None)
-            for key, val in self.patched['wakatime.offlinequeue.Queue.push'].call_args[0][0].items():
-                self.assertEquals(heartbeat[key], val)
-            self.assertEquals(stats, json.loads(self.patched['wakatime.offlinequeue.Queue.push'].call_args[0][1]))
-            self.patched['wakatime.offlinequeue.Queue.pop'].assert_not_called()
+            self.assertHeartbeatNotSavedOffline()
+            self.assertOfflineHeartbeatsSynced()
+            self.assertSessionCacheSaved()
+
+    def test_legacy_hidefilenames_config_supported(self):
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
+
+        with TemporaryDirectory() as tempdir:
+            entity = 'tests/samples/codefiles/python.py'
+            shutil.copy(entity, os.path.join(tempdir, 'python.py'))
+            entity = os.path.realpath(os.path.join(tempdir, 'python.py'))
+            now = u(int(time.time()))
+            config = 'tests/samples/configs/paranoid_legacy.cfg'
+            key = u(uuid.uuid4())
+            project = 'abcxyz'
+
+            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--log-file', '~/.wakatime.log', '--alternate-project', project]
+
+            retval = execute(args)
+            self.assertEquals(retval, SUCCESS)
+            self.assertNothingPrinted()
+
+            heartbeat = {
+                'language': 'Python',
+                'lines': None,
+                'entity': 'HIDDEN.py',
+                'project': project,
+                'time': float(now),
+                'is_write': False,
+                'type': 'file',
+                'dependencies': None,
+                'user_agent': ANY,
+            }
+            self.assertHeartbeatSent(heartbeat)
+
+            self.assertHeartbeatNotSavedOffline()
+            self.assertOfflineHeartbeatsSynced()
+            self.assertSessionCacheSaved()
 
     def test_hide_all_filenames_from_cli_arg(self):
-        response = Response()
-        response.status_code = 0
-        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
 
-        with utils.TemporaryDirectory() as tempdir:
-            entity = 'tests/samples/codefiles/twolinefile.txt'
-            shutil.copy(entity, os.path.join(tempdir, 'twolinefile.txt'))
-            entity = os.path.realpath(os.path.join(tempdir, 'twolinefile.txt'))
+        with TemporaryDirectory() as tempdir:
+            entity = 'tests/samples/codefiles/python.py'
+            shutil.copy(entity, os.path.join(tempdir, 'python.py'))
+            entity = os.path.realpath(os.path.join(tempdir, 'python.py'))
             now = u(int(time.time()))
             config = 'tests/samples/configs/good_config.cfg'
             key = str(uuid.uuid4())
+            project = 'abcxyz'
 
-            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--hidefilenames', '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--hide-filenames', '--log-file', '~/.wakatime.log', '--alternate-project', project]
 
             retval = execute(args)
-            self.assertEquals(retval, API_ERROR)
-            self.assertEquals(sys.stdout.getvalue(), '')
-            self.assertEquals(sys.stderr.getvalue(), '')
-
-            self.patched['wakatime.session_cache.SessionCache.get'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.delete'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.save'].assert_not_called()
+            self.assertEquals(retval, SUCCESS)
+            self.assertNothingPrinted()
 
             heartbeat = {
-                'language': 'Text only',
-                'lines': 2,
-                'entity': 'HIDDEN.txt',
-                'project': os.path.basename(os.path.abspath('.')),
+                'language': 'Python',
+                'lines': None,
+                'entity': 'HIDDEN.py',
+                'project': project,
                 'time': float(now),
+                'is_write': False,
                 'type': 'file',
+                'dependencies': None,
+                'user_agent': ANY,
             }
-            stats = {
-                u('cursorpos'): None,
-                u('dependencies'): [],
-                u('language'): u('Text only'),
-                u('lineno'): None,
-                u('lines'): 2,
-            }
+            self.assertHeartbeatSent(heartbeat)
 
-            self.patched['wakatime.offlinequeue.Queue.push'].assert_called_once_with(ANY, ANY, None)
-            for key, val in self.patched['wakatime.offlinequeue.Queue.push'].call_args[0][0].items():
-                self.assertEquals(heartbeat[key], val)
-            self.assertEquals(stats, json.loads(self.patched['wakatime.offlinequeue.Queue.push'].call_args[0][1]))
-            self.patched['wakatime.offlinequeue.Queue.pop'].assert_not_called()
+            self.assertHeartbeatNotSavedOffline()
+            self.assertOfflineHeartbeatsSynced()
+            self.assertSessionCacheSaved()
 
     def test_hide_matching_filenames(self):
-        response = Response()
-        response.status_code = 0
-        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
 
-        with utils.TemporaryDirectory() as tempdir:
-            entity = 'tests/samples/codefiles/twolinefile.txt'
-            shutil.copy(entity, os.path.join(tempdir, 'twolinefile.txt'))
-            entity = os.path.realpath(os.path.join(tempdir, 'twolinefile.txt'))
+        with TemporaryDirectory() as tempdir:
+            entity = 'tests/samples/codefiles/python.py'
+            shutil.copy(entity, os.path.join(tempdir, 'python.py'))
+            entity = os.path.realpath(os.path.join(tempdir, 'python.py'))
             now = u(int(time.time()))
             config = 'tests/samples/configs/hide_file_names.cfg'
-            key = str(uuid.uuid4())
+            key = '033c47c9-0441-4eb5-8b3f-b51f27b31049'
+            project = 'abcxyz'
 
-            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--log-file', '~/.wakatime.log', '--alternate-project', project]
 
             retval = execute(args)
-            self.assertEquals(retval, API_ERROR)
-            self.assertEquals(sys.stdout.getvalue(), '')
-            self.assertEquals(sys.stderr.getvalue(), '')
-
-            self.patched['wakatime.session_cache.SessionCache.get'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.delete'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.save'].assert_not_called()
+            self.assertEquals(retval, SUCCESS)
+            self.assertNothingPrinted()
 
             heartbeat = {
-                'language': 'Text only',
-                'lines': 2,
-                'entity': 'HIDDEN.txt',
-                'project': os.path.basename(os.path.abspath('.')),
+                'language': 'Python',
+                'lines': None,
+                'entity': 'HIDDEN.py',
+                'project': project,
                 'time': float(now),
+                'is_write': False,
                 'type': 'file',
+                'dependencies': None,
+                'user_agent': ANY,
             }
-            stats = {
-                u('cursorpos'): None,
-                u('dependencies'): [],
-                u('language'): u('Text only'),
-                u('lineno'): None,
-                u('lines'): 2,
+            headers = {
+                'Authorization': u('Basic {0}').format(u(base64.b64encode(str.encode(key) if is_py3 else key))),
             }
+            self.assertHeartbeatSent(heartbeat, headers=headers)
 
-            self.patched['wakatime.offlinequeue.Queue.push'].assert_called_once_with(ANY, ANY, None)
-            for key, val in self.patched['wakatime.offlinequeue.Queue.push'].call_args[0][0].items():
-                self.assertEquals(heartbeat[key], val)
-            self.assertEquals(stats, json.loads(self.patched['wakatime.offlinequeue.Queue.push'].call_args[0][1]))
-            self.patched['wakatime.offlinequeue.Queue.pop'].assert_not_called()
+            self.assertHeartbeatNotSavedOffline()
+            self.assertOfflineHeartbeatsSynced()
+            self.assertSessionCacheSaved()
 
     def test_does_not_hide_unmatching_filenames(self):
-        response = Response()
-        response.status_code = 0
-        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
 
-        with utils.TemporaryDirectory() as tempdir:
-            entity = 'tests/samples/codefiles/emptyfile.txt'
-            shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
-            entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
+        with TemporaryDirectory() as tempdir:
+            entity = 'tests/samples/codefiles/python.py'
+            shutil.copy(entity, os.path.join(tempdir, 'python.py'))
+            entity = os.path.realpath(os.path.join(tempdir, 'python.py'))
             now = u(int(time.time()))
-            config = 'tests/samples/configs/hide_file_names.cfg'
-            key = str(uuid.uuid4())
+            config = 'tests/samples/configs/hide_file_names_not_python.cfg'
+            key = u(uuid.uuid4())
+            dependencies = ['sqlalchemy', 'jinja', 'simplejson', 'flask', 'app', 'django', 'pygments', 'unittest', 'mock']
+            project = 'abcxyz'
 
-            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--log-file', '~/.wakatime.log', '--alternate-project', project]
 
             retval = execute(args)
-            self.assertEquals(retval, API_ERROR)
-            self.assertEquals(sys.stdout.getvalue(), '')
-            self.assertEquals(sys.stderr.getvalue(), '')
-
-            self.patched['wakatime.session_cache.SessionCache.get'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.delete'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.save'].assert_not_called()
+            self.assertEquals(retval, SUCCESS)
+            self.assertNothingPrinted()
 
             heartbeat = {
-                'language': 'Text only',
-                'lines': 0,
+                'language': 'Python',
+                'lines': 37,
                 'entity': entity,
-                'project': os.path.basename(os.path.abspath('.')),
+                'project': project,
                 'time': float(now),
+                'is_write': False,
                 'type': 'file',
+                'dependencies': dependencies,
+                'user_agent': ANY,
             }
-            stats = {
-                u('cursorpos'): None,
-                u('dependencies'): [],
-                u('language'): u('Text only'),
-                u('lineno'): None,
-                u('lines'): 0,
-            }
+            self.assertHeartbeatSent(heartbeat)
 
-            self.patched['wakatime.offlinequeue.Queue.push'].assert_called_once_with(ANY, ANY, None)
-            for key, val in self.patched['wakatime.offlinequeue.Queue.push'].call_args[0][0].items():
-                self.assertEquals(heartbeat[key], val)
-            self.assertEquals(stats, json.loads(self.patched['wakatime.offlinequeue.Queue.push'].call_args[0][1]))
-            self.patched['wakatime.offlinequeue.Queue.pop'].assert_not_called()
+            self.assertHeartbeatNotSavedOffline()
+            self.assertOfflineHeartbeatsSynced()
+            self.assertSessionCacheSaved()
 
     @log_capture()
     def test_does_not_hide_filenames_from_invalid_regex(self, logs):
         logging.disable(logging.NOTSET)
 
-        response = Response()
-        response.status_code = 0
-        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
 
-        with utils.TemporaryDirectory() as tempdir:
+        with TemporaryDirectory() as tempdir:
             entity = 'tests/samples/codefiles/emptyfile.txt'
             shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
             entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
@@ -455,44 +427,37 @@ class ConfigsTestCase(utils.TestCase):
             config = 'tests/samples/configs/invalid_hide_file_names.cfg'
             key = str(uuid.uuid4())
 
-            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--key', key, '--config', config, '--time', now, '--log-file', '~/.wakatime.log']
 
             retval = execute(args)
-            self.assertEquals(retval, API_ERROR)
-            self.assertEquals(sys.stdout.getvalue(), '')
-            self.assertEquals(sys.stderr.getvalue(), '')
+            self.assertEquals(retval, SUCCESS)
+            self.assertNothingPrinted()
 
-            log_output = u("\n").join([u(' ').join(x) for x in logs.actual()])
+            actual = self.getLogOutput(logs)
             expected = u('WakaTime WARNING Regex error (unbalanced parenthesis) for include pattern: invalid(regex')
             if self.isPy35OrNewer:
                 expected = 'WakaTime WARNING Regex error (missing ), unterminated subpattern at position 7) for include pattern: invalid(regex'
-            self.assertEquals(expected, log_output)
-
-            self.patched['wakatime.session_cache.SessionCache.get'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.delete'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.save'].assert_not_called()
+            self.assertEquals(expected, actual)
 
             heartbeat = {
                 'language': 'Text only',
                 'lines': 0,
-                'entity': entity,
-                'project': os.path.basename(os.path.abspath('.')),
+                'entity': os.path.realpath(entity),
+                'project': None,
+                'cursorpos': None,
+                'lineno': None,
                 'time': float(now),
+                'is_write': False,
                 'type': 'file',
-            }
-            stats = {
-                u('cursorpos'): None,
-                u('dependencies'): [],
-                u('language'): u('Text only'),
-                u('lineno'): None,
-                u('lines'): 0,
+                'dependencies': [],
+                'user_agent': ANY,
             }
 
-            self.patched['wakatime.offlinequeue.Queue.push'].assert_called_once_with(ANY, ANY, None)
-            for key, val in self.patched['wakatime.offlinequeue.Queue.push'].call_args[0][0].items():
-                self.assertEquals(heartbeat[key], val)
-            self.assertEquals(stats, json.loads(self.patched['wakatime.offlinequeue.Queue.push'].call_args[0][1]))
-            self.patched['wakatime.offlinequeue.Queue.pop'].assert_not_called()
+            self.assertHeartbeatSent(heartbeat)
+
+            self.assertHeartbeatNotSavedOffline()
+            self.assertOfflineHeartbeatsSynced()
+            self.assertSessionCacheSaved()
 
     @log_capture()
     def test_exclude_file(self, logs):
@@ -502,78 +467,137 @@ class ConfigsTestCase(utils.TestCase):
         response.status_code = 0
         self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
 
-        with utils.TemporaryDirectory() as tempdir:
+        with TemporaryDirectory() as tempdir:
             entity = 'tests/samples/codefiles/emptyfile.txt'
             shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
             entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
             config = 'tests/samples/configs/good_config.cfg'
 
-            args = ['--file', entity, '--config', config, '--exclude', 'empty', '--verbose', '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--config', config, '--exclude', 'empty', '--verbose', '--log-file', '~/.wakatime.log']
             retval = execute(args)
             self.assertEquals(retval, SUCCESS)
-
-            self.assertEquals(sys.stdout.getvalue(), '')
-            self.assertEquals(sys.stderr.getvalue(), '')
-
-            log_output = u("\n").join([u(' ').join(x) for x in logs.actual()])
+            self.assertNothingPrinted()
+            actual = self.getLogOutput(logs)
             expected = 'WakaTime DEBUG Skipping because matches exclude pattern: empty'
-            self.assertEquals(log_output, expected)
+            self.assertEquals(actual, expected)
 
-            self.patched['wakatime.session_cache.SessionCache.get'].assert_not_called()
-            self.patched['wakatime.session_cache.SessionCache.delete'].assert_not_called()
-            self.patched['wakatime.session_cache.SessionCache.save'].assert_not_called()
+            self.assertHeartbeatNotSent()
 
-            self.patched['wakatime.offlinequeue.Queue.push'].assert_not_called()
-            self.patched['wakatime.offlinequeue.Queue.pop'].assert_called_once_with()
+            self.assertHeartbeatNotSavedOffline()
+            self.assertOfflineHeartbeatsSynced()
+            self.assertSessionCacheUntouched()
 
-    def test_hostname_set_from_config_file(self):
+    @log_capture()
+    def test_exclude_file_without_project_file(self, logs):
+        logging.disable(logging.NOTSET)
+
         response = Response()
-        response.status_code = 201
+        response.status_code = 0
         self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
 
-        with utils.TemporaryDirectory() as tempdir:
+        with TemporaryDirectory() as tempdir:
+            entity = 'tests/samples/codefiles/emptyfile.txt'
+            shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
+            entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
+            config = 'tests/samples/configs/include_only_with_project_file.cfg'
+
+            args = ['--file', entity, '--config', config, '--verbose', '--log-file', '~/.wakatime.log']
+            retval = execute(args)
+            self.assertEquals(retval, SUCCESS)
+            self.assertNothingPrinted()
+            actual = self.getLogOutput(logs)
+            expected = 'WakaTime DEBUG Skipping because missing .wakatime-project file in parent path.'
+            self.assertEquals(actual, expected)
+
+            self.assertHeartbeatNotSent()
+
+            self.assertHeartbeatNotSavedOffline()
+            self.assertOfflineHeartbeatsSynced()
+            self.assertSessionCacheUntouched()
+
+    @log_capture()
+    def test_include_file_with_project_file(self, logs):
+        logging.disable(logging.NOTSET)
+
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
+
+        with TemporaryDirectory() as tempdir:
+            entity = 'tests/samples/codefiles/emptyfile.txt'
+            shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
+            entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
+            config = 'tests/samples/configs/include_only_with_project_file.cfg'
+            project = 'abcxyz'
+            now = u(int(time.time()))
+
+            with open(os.path.join(tempdir, '.wakatime-project'), 'w'):
+                pass
+
+            args = ['--file', entity, '--config', config, '--time', now, '--verbose', '--log-file', '~/.wakatime.log', '--project', project]
+            retval = execute(args)
+
+            self.assertEquals(retval, SUCCESS)
+            self.assertNothingPrinted()
+
+            heartbeat = {
+                'language': 'Text only',
+                'lines': 0,
+                'entity': os.path.realpath(entity),
+                'project': project,
+                'branch': ANY,
+                'cursorpos': None,
+                'lineno': None,
+                'time': float(now),
+                'is_write': False,
+                'type': 'file',
+                'dependencies': [],
+                'user_agent': ANY,
+            }
+            self.assertHeartbeatSent(heartbeat)
+
+            self.assertHeartbeatNotSavedOffline()
+            self.assertOfflineHeartbeatsSynced()
+            self.assertSessionCacheSaved()
+
+    def test_hostname_set_from_config_file(self):
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
+
+        with TemporaryDirectory() as tempdir:
             entity = 'tests/samples/codefiles/emptyfile.txt'
             shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
             entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
 
             hostname = 'fromcfgfile'
             config = 'tests/samples/configs/has_everything.cfg'
-            args = ['--file', entity, '--config', config, '--timeout', '15', '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--config', config, '--timeout', '15', '--log-file', '~/.wakatime.log']
             retval = execute(args)
             self.assertEquals(retval, SUCCESS)
+            self.assertNothingPrinted()
 
-            self.patched['wakatime.session_cache.SessionCache.get'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.delete'].assert_not_called()
-            self.patched['wakatime.session_cache.SessionCache.save'].assert_called_once_with(ANY)
+            headers = {
+                'X-Machine-Name': hostname.encode('utf-8') if is_py3 else hostname,
+            }
+            self.assertHeartbeatSent(headers=headers, proxies=ANY, timeout=15)
 
-            self.patched['wakatime.offlinequeue.Queue.push'].assert_not_called()
-            self.patched['wakatime.offlinequeue.Queue.pop'].assert_called_once_with()
-
-            headers = self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].call_args[0][0].headers
-            self.assertEquals(headers.get('X-Machine-Name'), hostname.encode('utf-8') if is_py3 else hostname)
+            self.assertHeartbeatNotSavedOffline()
+            self.assertOfflineHeartbeatsSynced()
+            self.assertSessionCacheSaved()
 
     def test_no_ssl_verify_from_config_file(self):
-        response = Response()
-        response.status_code = 201
-        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = response
+        self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].return_value = CustomResponse()
 
-        with utils.TemporaryDirectory() as tempdir:
+        with TemporaryDirectory() as tempdir:
             entity = 'tests/samples/codefiles/emptyfile.txt'
             shutil.copy(entity, os.path.join(tempdir, 'emptyfile.txt'))
             entity = os.path.realpath(os.path.join(tempdir, 'emptyfile.txt'))
 
             config = 'tests/samples/configs/has_ssl_verify_disabled.cfg'
-            args = ['--file', entity, '--config', config, '--timeout', '15', '--logfile', '~/.wakatime.log']
+            args = ['--file', entity, '--config', config, '--timeout', '15', '--log-file', '~/.wakatime.log']
             retval = execute(args)
             self.assertEquals(retval, SUCCESS)
-            self.assertEquals(sys.stdout.getvalue(), '')
-            self.assertEquals(sys.stderr.getvalue(), '')
+            self.assertNothingPrinted()
 
-            self.patched['wakatime.session_cache.SessionCache.get'].assert_called_once_with()
-            self.patched['wakatime.session_cache.SessionCache.delete'].assert_not_called()
-            self.patched['wakatime.session_cache.SessionCache.save'].assert_called_once_with(ANY)
+            self.assertHeartbeatSent(proxies=ANY, timeout=15, verify=False)
 
-            self.patched['wakatime.offlinequeue.Queue.push'].assert_not_called()
-            self.patched['wakatime.offlinequeue.Queue.pop'].assert_called_once_with()
-
-            self.patched['wakatime.packages.requests.adapters.HTTPAdapter.send'].assert_called_once_with(ANY, cert=None, proxies=ANY, stream=False, timeout=15, verify=False)
+            self.assertHeartbeatNotSavedOffline()
+            self.assertOfflineHeartbeatsSynced()
+            self.assertSessionCacheSaved()

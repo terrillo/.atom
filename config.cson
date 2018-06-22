@@ -1,21 +1,27 @@
 "*":
   core:
-    automaticallyUpdate: false
     customFileTypes:
       "text.html.php": [
         "theme"
       ]
     disabledPackages: [
       "linter-twig"
+      "wakatime"
     ]
+    excludeVcsIgnoredPaths: false
     telemetryConsent: "no"
     themes: [
       "one-light-ui"
       "apex-syntax"
     ]
+  docblockr:
+    param_description: false
+    return_description: false
   editor:
     fontFamily: "Roboto Mono"
-    fontSize: 15
+    fontSize: 13
+    invisibles: {}
+    showIndentGuide: true
     softWrap: true
   "exception-reporting":
     userId: "04b4ef68-ef77-4034-814f-5fce2d6bf2d4"
@@ -26,6 +32,14 @@
   "linter-twig": {}
   "linter-ui-default":
     panelHeight: 69
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    scrollSyncType: "Vertical + Horizontal"
+  "tree-view":
+    hideVcsIgnoredFiles: true
   wakatime:
     apikey: "Enter your api key..."
   welcome:
