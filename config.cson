@@ -10,10 +10,6 @@
     ]
     excludeVcsIgnoredPaths: false
     telemetryConsent: "no"
-    themes: [
-      "one-light-ui"
-      "apex-syntax"
-    ]
   docblockr:
     param_description: false
     return_description: false

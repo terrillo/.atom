@@ -1,0 +1,113 @@
+// Tree View
+// -------------------
+// Used to explore and open files in the current project.
+// Overrides: atom/tree-view
+.tree-view-resizer {
+    border-top: 1px solid @base-border-color;
+    border-right: 1px solid @base-border-color;
+}
+
+.tree-view {
+    color: @text-color;
+    background-color: @tree-view-background-color;
+
+    .list-item.selected {
+        color: @text-color-selected;
+
+        &::before {
+            background: @oc-gray-7;
+        }
+    }
+}
+
+.tree-view .entry.directory.status-modified > .header,
+.tree-view .entry.file.status-modified {
+	color: @oc-yellow-3;
+}
+
+.tree-view .entry.directory.status-added > .header,
+.tree-view .entry.file.status-added {
+	color: @oc-green-3;
+}
+
+.tree-view .entry.directory.status-renamed > .header,
+.tree-view .entry.file.status-renamed {
+	color: @oc-blue-3;
+}
+
+.tree-view .entry.directory.status-removed > .header,
+.tree-view .entry.file.status-removed {
+	color: @oc-red-3;
+}
+
+.tree-view .entry.directory.status-ignored > .header,
+.tree-view .entry.file.status-ignored {
+	color: @oc-gray-7;
+}
+
+.list-tree >
+li:not(.status-modified):not(.status-ignored):not(.status-removed):not(.status-renamed):not(.status-added) {
+	color: @text-color;
+}
+
+// .entries.list-tree {
+// 	.status-ignored > .directory > .header,
+// 	.status-ignored > .file {
+// 		color: @oc-gray-7;
+// 	}
+//
+// 	.status-modified > .directory > .header,
+// 	.status-modified > .file {
+// 		color: @oc-yellow-3;
+// 	}
+//
+// 	.status-renamed > .directory > .header,
+// 	.status-renamed > .file {
+// 		color: @oc-blue-3;
+// 	}
+//
+// 	.status-removed > .directory > .header,
+// 	.status-removed > .file {
+// 		color: @oc-red-3;
+// 	}
+//
+// 	.status-added > .directory > .header,
+// 	.status-added > .file {
+// 		color: @oc-green-3;
+// 	}
+//
+// 	// .directory > .header,
+// 	// .file {
+// 	// 	color: @text-color;
+// 	// }
+// }
+
+// .list-tree li.list-nested-item[class*='status-modified'] > .list-item.status-modified {
+//     color: @oc-yellow-3 !important;
+// }
+//
+// .list-tree li.list-nested-item[class*='status-renamed'] > .list-item.status-renamed {
+//     color: @oc-blue-3 !important;
+// }
+//
+// .list-tree li.list-nested-item[class*='status-added'] > .list-item.status-added {
+//     color: @oc-green-3 !important;
+// }
+//
+// .list-tree li.list-nested-item[class*='status-ignored'] > .list-item.status-ignored {
+//     color: @oc-gray-7!important;
+// }
+//
+// .list-tree li.list-nested-item[class*='status-removed'] > .list-item.status-removed {
+//     color: @oc-red-3!important;
+// }
+//
+// .icon-file-text {
+//   color: @text-color !important;
+// }
+
+
+
+
+
+

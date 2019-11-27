@@ -1,0 +1,184 @@
+
+// Lists
+// -------------------
+
+// Used in different places, like the Tree View, Commmand Palette etc.
+// Overrides: atom/static/lists.less
+
+// List Group -------------------
+.list-group {
+  li {
+    padding-left: @component-padding/2;
+    border-bottom: 1px dotted @base-border-color;
+    color: @text-color-dim;
+
+    // We want to highlight the background of the list items because we dont know their size.
+    &.selected {
+      color: @text-color-selected;
+      z-index: 15;
+      &:before{ display: none; }
+    }
+  }
+}
+
+
+// List Tree -------------------
+.list-tree {
+  .selected {
+    color: @text-color-selected;
+  }
+}
+
+
+// Select List -------------------
+.select-list {
+  li {
+    padding: @component-padding * .75 @component-padding;
+  }
+  .status {
+    float: right;
+  }
+}
+
+.select-list {
+  .character-match {
+    font-weight: normal !important;
+    border-bottom: 1px solid @oc-blue-3;
+    color: inherit;
+  }
+}
+
+// Popover List -------------------
+// Used as a popover for something like autocomplete.
+autocomplete-suggestion-list.select-list.popover-list {
+  @popover-list-padding: @component-padding/2;
+
+  padding: @popover-list-padding;
+  border-radius: @component-border-radius;
+  background-color: @overlay-background-color;
+  .medium-shadow;
+
+  .suggestion-description {
+    background: transparent;
+    font-size: .9rem;
+  }
+
+  .suggestion-description-content {
+    font-size: .9rem;
+  }
+
+  ol.list-group {
+    li {
+      line-height: 2em;
+    }
+  }
+
+
+  .selected {
+    background: @oc-gray-3;
+    .icon {
+      color: @oc-blue-3;
+    }
+  }
+}
+
+.select-list.command-palette {
+	@popover-list-padding: @component-padding/2;
+
+	padding: @popover-list-padding;
+	border-radius: @component-border-radius;
+	background: rgba(23, 24, 24, .90);
+	.medium-shadow;
+
+	.suggestion-description {
+		background: transparent;
+		font-size: .9rem;
+	}
+
+	.suggestion-description-content {
+		font-size: .9rem;
+	}
+
+	ol.list-group {
+		li {
+			line-height: 2em;
+		}
+	}
+
+
+	.selected {
+		color: @oc-blue-3;
+		.icon {
+			color: @oc-blue-3;
+		}
+	}
+}
+
+.select-list .selected .secondary-line {
+  color: @text-color-subtle;
+}
+
+.list-group li:not(.list-nested-item) {
+  line-height: 1.8;
+}
+
+autocomplete-suggestion-list {
+  .suggestion-list-scroller {
+    background: @oc-gray-9;
+  }
+
+  .left-label {
+    color: @oc-gray-2;
+  }
+
+
+  .word-container {
+    color: @oc-gray-3;
+  }
+
+  .icon-container {
+    // display: none !important;
+    .icon {
+      background: @oc-gray-9 !important;
+      color: @oc-gray-4;
+    }
+  }
+}
+
+// .generate-list-item-text-color(@class) {
+//     li:not(.list-nested-item).text-@{class},
+//     li.list-nested-item.text-@{class} > .list-item {
+//
+//     }
+// }
+//
+// .generate-list-item-status-color(@color, @status) {
+//     li:not(.list-nested-item).status-@{status},
+//     li.list-nested-item.status-@{status} > .list-item {
+//         color: @color;
+//     }
+//
+//     li:not(.list-nested-item).selected.status-@{status},
+//     li.list-nested-item.selected.status-@{status} > .list-item {
+//         color: @color;
+//     }
+// }
+//
+// .list-group, .list-tree {
+//     li:not(.list-nested-item),
+//     li.list-nested-item > .list-item {
+//
+//     }
+//
+//     .generate-list-item-text-color(subtle);
+//     .generate-list-item-text-color(info);
+//     .generate-list-item-text-color(success);
+//     .generate-list-item-text-color(warning);
+//     .generate-list-item-text-color(error);
+//     .generate-list-item-text-color(selected);
+//     .generate-list-item-status-color(@oc-gray-7, ignored);
+//     .generate-list-item-status-color(@oc-green-3, added);
+//     .generate-list-item-status-color(@oc-blue-3, renamed);
+//     .generate-list-item-status-color(@oc-yellow-3, modified);
+//     .generate-list-item-status-color(@oc-red-3, removed);
+// }

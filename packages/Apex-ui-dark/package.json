@@ -1,0 +1,52 @@
+{
+  "_from": "https://www.atom.io/api/packages/apex-ui-dark/versions/0.4.0/tarball",
+  "_id": "Apex-ui-dark@0.4.0",
+  "_inBundle": false,
+  "_integrity": "sha512-IphtScyusbbuwjezkhLyRxNz7HQCvfCodbiKvGn8SrdZXs7rZkotxZ97HDtIrKjDjb5fsZRWaWj6ySTXVPquVw==",
+  "_location": "/Apex-ui-dark",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/apex-ui-dark/versions/0.4.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/apex-ui-dark/versions/0.4.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/apex-ui-dark/versions/0.4.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/apex-ui-dark/versions/0.4.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/apex-ui-dark/versions/0.4.0/tarball",
+  "_shasum": "c412308051e530e59b97b042ddf1a029f0952965",
+  "_spec": "https://www.atom.io/api/packages/apex-ui-dark/versions/0.4.0/tarball",
+  "_where": "/private/var/folders/cr/7wyf__qx40vgr2y508htr2tw0000gn/T/apm-install-dir-1191026-13828-90trrf.dqvak",
+  "bugs": {
+    "url": "https://github.com/jarvvski/Apex-ui-dark/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Darker version of the apex theme",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/jarvvski/Apex-ui-dark#readme",
+  "keywords": [
+    "apex",
+    "monochrome",
+    "ui",
+    "ia",
+    "theme",
+    "writer",
+    "dark",
+    "mode",
+    "dark-mode"
+  ],
+  "license": "MIT",
+  "name": "Apex-ui-dark",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jarvvski/Apex-ui-dark.git"
+  },
+  "theme": "ui",
+  "version": "0.4.0"
+}
