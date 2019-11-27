@@ -1,4 +1,4 @@
-".source.js, .source.jsx, .source.ts, .source.tsx":
+".source.js, .source.jsx, .source.ts, .source.tsx, .source.flow":
   "React: import empty":
     prefix: "_i"
     body: "import ${1} from '${2}';"
@@ -23,6 +23,10 @@
     prefix: "_irp"
     body: "import React from 'react';\nimport PropTypes from 'prop-types';"
 
+  "React: import PropTypes":
+    prefix: "_ipt"
+    body: "import PropTypes from 'prop-types';"
+
   "React: import with Component and PropTypes":
     prefix: "_ircp"
     body: "import React, { Component } from 'react';\nimport PropTypes from 'prop-types';"
@@ -30,6 +34,18 @@
   "React: import react-dom()":
     prefix: "_ird"
     body: "import ReactDOM from 'react-dom';"
+
+  "React: Import with useState":
+    prefix: "_irs",
+    body: "import React, { useState } from 'react';"
+
+  "React: Import with useEffect":
+    prefix: "_ire",
+    body: "import React, { useEffect } from 'react';"
+
+  "React: Import with useState and useEffect":
+    prefix: "_irse",
+    body: "import React, { useState, useEffect } from 'react';"
 
   "React: export empty()":
     prefix: "_ex"
@@ -142,6 +158,10 @@
   "React: setState({ ... })":
     prefix: "_sst"
     body: "this.setState({\n\t${1}: ${2}\n});"
+
+  "React: useState(const [... , ...])":
+    prefix: "_ust"
+    body: "const [${1}, set${1/(.+)/\\u$1/}] = useState(${2})"
 
   "React: this.props.":
     prefix: "_props"

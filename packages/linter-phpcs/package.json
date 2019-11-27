@@ -1,42 +1,33 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-117910-66142-1b8cjfw.00jr79zfr/package.tgz",
-        "scope": null,
-        "escapedName": null,
-        "name": null,
-        "rawSpec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-117910-66142-1b8cjfw.00jr79zfr/package.tgz",
-        "spec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-117910-66142-1b8cjfw.00jr79zfr/package.tgz",
-        "type": "local"
-      },
-      "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/apm-install-dir-117910-66142-1hioi2x.9svhen4s4i"
-    ]
-  ],
-  "_from": "../d-117910-66142-1b8cjfw.00jr79zfr/package.tgz",
-  "_id": "linter-phpcs@1.6.8",
-  "_inCache": true,
+  "_from": "https://www.atom.io/api/packages/linter-phpcs/versions/1.7.6/tarball",
+  "_id": "linter-phpcs@1.7.6",
+  "_inBundle": false,
+  "_integrity": "sha512-7tCzNy8uQiXjnCXVD/rlUcWAGrQTEnFahjr4OUadin4ehWC6CfSsGy7UldpjE2xwJOpKueI23KI/hvFZ5q6wGA==",
   "_location": "/linter-phpcs",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-117910-66142-1b8cjfw.00jr79zfr/package.tgz",
-    "scope": null,
-    "escapedName": null,
-    "name": null,
-    "rawSpec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-117910-66142-1b8cjfw.00jr79zfr/package.tgz",
-    "spec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-117910-66142-1b8cjfw.00jr79zfr/package.tgz",
-    "type": "local"
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/linter-phpcs/versions/1.7.6/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/linter-phpcs/versions/1.7.6/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/linter-phpcs/versions/1.7.6/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/linter-phpcs/versions/1.7.6/tarball"
   },
   "_requiredBy": [
-    "#USER"
+    "#USER",
+    "/"
   ],
-  "_resolved": "file:../d-117910-66142-1b8cjfw.00jr79zfr/package.tgz",
-  "_shasum": "99012eacdc5612dbe54793e2592c1decae029ed0",
-  "_shrinkwrap": null,
-  "_spec": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/d-117910-66142-1b8cjfw.00jr79zfr/package.tgz",
-  "_where": "/private/var/folders/c7/l70nd0ds42x48gx936j7pby40000gt/T/apm-install-dir-117910-66142-1hioi2x.9svhen4s4i",
+  "_resolved": "https://www.atom.io/api/packages/linter-phpcs/versions/1.7.6/tarball",
+  "_shasum": "d65506b4ced6f7e2b4b7445f3caa7487563872ff",
+  "_spec": "https://www.atom.io/api/packages/linter-phpcs/versions/1.7.6/tarball",
+  "_where": "/private/var/folders/cr/7wyf__qx40vgr2y508htr2tw0000gn/T/apm-install-dir-1191026-15458-1fk2srk.bic2g",
   "bugs": {
     "url": "https://github.com/AtomLinter/linter-phpcs/issues"
+  },
+  "bundleDependencies": false,
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "configSchema": {
     "executablePath": {
@@ -49,7 +40,7 @@
       "title": "Search for executables",
       "type": "boolean",
       "default": true,
-      "description": "Automatically search for any `vendor/bin/phpcs.bat` or `vendor/bin/phpcs` executable. Overrides the exectuable defined above.",
+      "description": "Automatically search for any `vendor/bin/` or `bin/` for the `phpcs` executable. Overrides the executable defined above.",
       "order": 2
     },
     "codeStandardOrConfigFile": {
@@ -139,17 +130,24 @@
     }
   },
   "dependencies": {
-    "atom-linter": "^10.0.0",
-    "atom-package-deps": "^4.5.0",
-    "minimatch": "^3.0.2",
-    "semver": "^5.3.0"
+    "atom-linter": "10.0.0",
+    "atom-package-deps": "5.1.0",
+    "minimatch": "3.0.4",
+    "semver": "6.3.0"
   },
+  "deprecated": false,
   "description": "Lint PHP on the fly, using phpcs",
   "devDependencies": {
-    "eslint": "^4.6.0",
-    "eslint-config-airbnb-base": "^12.0.0",
-    "eslint-plugin-import": "^2.7.0",
-    "jasmine-fix": "^1.0.1"
+    "@commitlint/cli": "8.1.0",
+    "@commitlint/config-conventional": "8.1.0",
+    "@commitlint/travis-cli": "8.1.0",
+    "@semantic-release/apm-config": "6.0.1",
+    "eslint": "6.3.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-plugin-import": "2.18.2",
+    "husky": "3.0.5",
+    "jasmine-fix": "1.3.1",
+    "semantic-release": "15.13.24"
   },
   "engines": {
     "atom": ">=1.8.0 <2.0.0"
@@ -176,10 +174,14 @@
     }
   },
   "homepage": "https://github.com/AtomLinter/linter-phpcs#readme",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "license": "MIT",
   "main": "./lib/main.js",
   "name": "linter-phpcs",
-  "optionalDependencies": {},
   "package-deps": [
     "linter:2.0.0"
   ],
@@ -191,8 +193,22 @@
       }
     }
   },
-  "readme": "# linter-phpcs\n\n[![Build Status][travisci-badge]][travisci]\n[![Dependency Status][dabviddm-badge]][daviddm]\n[![apm](https://img.shields.io/apm/v/linter-phpcs.svg)][linter-phpcs]\n[![apm](https://img.shields.io/apm/dm/linter-phpcs.svg)][linter-phpcs]\n\n## Description\n\nThis is a provider for [Linter][] that provides an interface to\n[PHP_CodeSniffer][PHPCS] (PHPCS). It supports files that have the \"PHP\" and\n\"HTML\" syntax.\n\n## Installation\n\n### PHPCS Installation\n\nBefore using this plugin, you must ensure that `phpcs` is installed and\navailable on your `$PATH`. To install `phpcs`, the following:\n\n1.  Install [PHP](http://php.net).\n2.  Install [Composer](https://getcomposer.org/).\n3.  Install `phpcs` by typing the following in a terminal:\n\n    ```ShellSession\n    composer global require \"squizlabs/php_codesniffer=*\"\n    ```\n\nFull installation steps, including alternate installation methods, can be found\non the PHPCS site [here][phpcs-install].\n\n### Package Installation\n\nYou can then install this package either from within Atom or by running the\nfollowing command:\n\n```ShellSession\n$ apm install linter-phpcs\n```\n\nNote: If you do not already have the Linter package installed it will be\ninstalled for you to provide an interface for this package. If you are using an\nalternative interface simply disable the Linter package.\n\n[travisci]: https://travis-ci.org/AtomLinter/linter-phpcs\n[travisci-badge]: https://travis-ci.org/AtomLinter/linter-phpcs.svg\n[daviddm]: https://david-dm.org/AtomLinter/linter-phpcs\n[dabviddm-badge]: https://david-dm.org/AtomLinter/linter-phpcs.svg\n[linter-phpcs]: https://atom.io/packages/linter-phpcs\n[Linter]: https://github.com/steelbrain/linter\n[PHPCS]: https://github.com/squizlabs/PHP_CodeSniffer\n[phpcs-install]: https://github.com/squizlabs/PHP_CodeSniffer#installation\n",
-  "readmeFilename": "README.md",
+  "release": {
+    "extends": "@semantic-release/apm-config"
+  },
+  "renovate": {
+    "extends": [
+      "config:base"
+    ],
+    "packageRules": [
+      {
+        "packagePatterns": [
+          "^eslint"
+        ],
+        "groupName": "ESLint packages"
+      }
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AtomLinter/linter-phpcs.git"
@@ -201,330 +217,5 @@
     "lint": "eslint .",
     "test": "apm test"
   },
-  "version": "1.6.8",
-  "_atomModuleCache": {
-    "version": 1,
-    "dependencies": [
-      {
-        "name": "atom-linter",
-        "version": "10.0.0",
-        "path": "node_modules/atom-linter/lib/index.js"
-      },
-      {
-        "name": "atom-package-deps",
-        "version": "4.6.0",
-        "path": "node_modules/atom-package-deps/lib/index.js"
-      },
-      {
-        "name": "sb-exec",
-        "version": "3.1.0",
-        "path": "node_modules/atom-package-deps/node_modules/sb-exec/lib/index.js"
-      },
-      {
-        "name": "atom-package-path",
-        "version": "1.1.0",
-        "path": "node_modules/atom-package-path/lib/index.js"
-      },
-      {
-        "name": "balanced-match",
-        "version": "1.0.0",
-        "path": "node_modules/balanced-match/index.js"
-      },
-      {
-        "name": "brace-expansion",
-        "version": "1.1.8",
-        "path": "node_modules/brace-expansion/index.js"
-      },
-      {
-        "name": "concat-map",
-        "version": "0.0.1",
-        "path": "node_modules/concat-map/index.js"
-      },
-      {
-        "name": "consistent-env",
-        "version": "1.3.1",
-        "path": "node_modules/consistent-env/lib/index.js"
-      },
-      {
-        "name": "is-utf8",
-        "version": "0.2.1",
-        "path": "node_modules/is-utf8/is-utf8.js"
-      },
-      {
-        "name": "lodash.uniq",
-        "version": "4.5.0",
-        "path": "node_modules/lodash.uniq/index.js"
-      },
-      {
-        "name": "minimatch",
-        "version": "3.0.4",
-        "path": "node_modules/minimatch/minimatch.js"
-      },
-      {
-        "name": "named-js-regexp",
-        "version": "1.3.3",
-        "path": "node_modules/named-js-regexp/lib/named-js-regexp.js"
-      },
-      {
-        "name": "os-tmpdir",
-        "version": "1.0.2",
-        "path": "node_modules/os-tmpdir/index.js"
-      },
-      {
-        "name": "sb-callsite",
-        "version": "1.1.2",
-        "path": "node_modules/sb-callsite/lib/main.js"
-      },
-      {
-        "name": "sb-exec",
-        "version": "4.0.0",
-        "path": "node_modules/sb-exec/lib/index.js"
-      },
-      {
-        "name": "sb-fs",
-        "version": "3.0.0",
-        "path": "node_modules/sb-fs/lib/index.js"
-      },
-      {
-        "name": "sb-memoize",
-        "version": "1.0.2",
-        "path": "node_modules/sb-memoize/lib/index.js"
-      },
-      {
-        "name": "sb-npm-path",
-        "version": "2.0.0",
-        "path": "node_modules/sb-npm-path/lib/index.js"
-      },
-      {
-        "name": "sb-promisify",
-        "version": "2.0.2",
-        "path": "node_modules/sb-promisify/lib/index.js"
-      },
-      {
-        "name": "semver",
-        "version": "5.4.1",
-        "path": "node_modules/semver/semver.js"
-      },
-      {
-        "name": "strip-bom-buf",
-        "version": "1.0.0",
-        "path": "node_modules/strip-bom-buf/index.js"
-      },
-      {
-        "name": "tmp",
-        "version": "0.0.33",
-        "path": "node_modules/tmp/lib/tmp.js"
-      }
-    ],
-    "extensions": {
-      ".js": [
-        "lib/main.js",
-        "node_modules/atom-linter/lib/helpers.js",
-        "node_modules/atom-linter/lib/index.js",
-        "node_modules/atom-linter/lib/types.js",
-        "node_modules/atom-package-deps/lib/helpers.js",
-        "node_modules/atom-package-deps/lib/index.js",
-        "node_modules/atom-package-deps/lib/types.js",
-        "node_modules/atom-package-deps/lib/view.js",
-        "node_modules/atom-package-deps/node_modules/sb-exec/decls/jasmine.js",
-        "node_modules/atom-package-deps/node_modules/sb-exec/lib/helpers.js",
-        "node_modules/atom-package-deps/node_modules/sb-exec/lib/index.js",
-        "node_modules/atom-package-deps/node_modules/sb-exec/lib/types.js",
-        "node_modules/atom-package-path/lib/index.js",
-        "node_modules/balanced-match/index.js",
-        "node_modules/brace-expansion/index.js",
-        "node_modules/concat-map/example/map.js",
-        "node_modules/concat-map/index.js",
-        "node_modules/consistent-env/lib/helpers.js",
-        "node_modules/consistent-env/lib/index.js",
-        "node_modules/is-utf8/is-utf8.js",
-        "node_modules/lodash.uniq/index.js",
-        "node_modules/minimatch/minimatch.js",
-        "node_modules/named-js-regexp/lib/named-js-regexp.js",
-        "node_modules/os-tmpdir/index.js",
-        "node_modules/sb-callsite/lib/main.js",
-        "node_modules/sb-exec/lib/helpers.js",
-        "node_modules/sb-exec/lib/index.js",
-        "node_modules/sb-exec/lib/types.js",
-        "node_modules/sb-fs/lib/index.js",
-        "node_modules/sb-memoize/lib/index.js",
-        "node_modules/sb-npm-path/decls/jasmine.js",
-        "node_modules/sb-npm-path/lib/helpers.js",
-        "node_modules/sb-npm-path/lib/index.js",
-        "node_modules/sb-promisify/lib/index.js",
-        "node_modules/semver/semver.js",
-        "node_modules/strip-bom-buf/index.js",
-        "node_modules/tmp/lib/tmp.js"
-      ],
-      ".json": [
-        "node_modules/atom-linter/.eslintrc.json",
-        "node_modules/atom-linter/package.json",
-        "node_modules/atom-package-deps/.eslintrc.json",
-        "node_modules/atom-package-deps/node_modules/sb-exec/.eslintrc.json",
-        "node_modules/atom-package-deps/node_modules/sb-exec/package.json",
-        "node_modules/atom-package-deps/package.json",
-        "node_modules/atom-package-path/package.json",
-        "node_modules/balanced-match/package.json",
-        "node_modules/brace-expansion/package.json",
-        "node_modules/concat-map/package.json",
-        "node_modules/consistent-env/.eslintrc.json",
-        "node_modules/consistent-env/package.json",
-        "node_modules/is-utf8/package.json",
-        "node_modules/lodash.uniq/package.json",
-        "node_modules/minimatch/package.json",
-        "node_modules/named-js-regexp/package.json",
-        "node_modules/os-tmpdir/package.json",
-        "node_modules/sb-callsite/package.json",
-        "node_modules/sb-exec/.eslintrc.json",
-        "node_modules/sb-exec/package.json",
-        "node_modules/sb-fs/package.json",
-        "node_modules/sb-memoize/.eslintrc.json",
-        "node_modules/sb-memoize/package.json",
-        "node_modules/sb-npm-path/.eslintrc.json",
-        "node_modules/sb-npm-path/package.json",
-        "node_modules/sb-promisify/package.json",
-        "node_modules/semver/package.json",
-        "node_modules/strip-bom-buf/package.json",
-        "node_modules/tmp/package.json",
-        "package-lock.json",
-        "package.json"
-      ]
-    },
-    "folders": [
-      {
-        "paths": [
-          "lib",
-          "",
-          "spec"
-        ],
-        "dependencies": {
-          "atom-linter": "^10.0.0",
-          "atom-package-deps": "^4.5.0",
-          "minimatch": "^3.0.2",
-          "semver": "^5.3.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/atom-linter",
-          "node_modules/atom-linter/lib"
-        ],
-        "dependencies": {
-          "named-js-regexp": "^1.3.1",
-          "sb-exec": "^4.0.0",
-          "sb-promisify": "^2.0.1",
-          "tmp": "~0.0.28"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/atom-package-deps",
-          "node_modules/atom-package-deps/lib"
-        ],
-        "dependencies": {
-          "atom-package-path": "^1.1.0",
-          "sb-exec": "^3.0.1",
-          "sb-fs": "^3.0.0",
-          "semver": "^5.3.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/atom-package-deps/node_modules/sb-exec",
-          "node_modules/atom-package-deps/node_modules/sb-exec/decls",
-          "node_modules/atom-package-deps/node_modules/sb-exec/lib"
-        ],
-        "dependencies": {
-          "consistent-env": "^1.2.0",
-          "lodash.uniq": "^4.5.0",
-          "sb-npm-path": "^2.0.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/atom-package-path/lib",
-          "node_modules/atom-package-path",
-          "node_modules/atom-package-path/spec"
-        ],
-        "dependencies": {
-          "sb-callsite": "^1.1.2"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/brace-expansion"
-        ],
-        "dependencies": {
-          "balanced-match": "^1.0.0",
-          "concat-map": "0.0.1"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/consistent-env",
-          "node_modules/consistent-env/lib"
-        ],
-        "dependencies": {
-          "lodash.uniq": "^4.5.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/minimatch"
-        ],
-        "dependencies": {
-          "brace-expansion": "^1.1.7"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/sb-exec",
-          "node_modules/sb-exec/lib"
-        ],
-        "dependencies": {
-          "consistent-env": "^1.2.0",
-          "lodash.uniq": "^4.5.0",
-          "sb-npm-path": "^2.0.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/sb-fs/lib",
-          "node_modules/sb-fs"
-        ],
-        "dependencies": {
-          "sb-promisify": "^2.0.1",
-          "strip-bom-buf": "^1.0.0"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/sb-npm-path",
-          "node_modules/sb-npm-path/decls",
-          "node_modules/sb-npm-path/lib"
-        ],
-        "dependencies": {
-          "sb-memoize": "^1.0.2",
-          "sb-promisify": "^2.0.1"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/strip-bom-buf"
-        ],
-        "dependencies": {
-          "is-utf8": "^0.2.1"
-        }
-      },
-      {
-        "paths": [
-          "node_modules/tmp/lib",
-          "node_modules/tmp"
-        ],
-        "dependencies": {
-          "os-tmpdir": "~1.0.2"
-        }
-      }
-    ]
-  }
+  "version": "1.7.6"
 }

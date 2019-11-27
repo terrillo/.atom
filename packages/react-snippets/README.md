@@ -32,8 +32,12 @@ The **⇥** means the `TAB` key
 | `_ir→`      | import react |
 | `_irc→`     | import react and component |
 | `_irp→`     | import react and prop-types |
+| `_ipt→`     | import prop-types |
 | `_ircp→`    | import react, component and prop-types |
 | `_ird→`     | import react-dom |
+| `_irs→`     | import react and useState |
+| `_ire→`     | import react and useEffect |
+| `_irse→`    | import react, useState and useEffect |
 | `_ex→`      | export |
 | `_exd→`     | export default |
 | `_cdm→`     | `componentDidMount method` |
@@ -61,6 +65,7 @@ The **⇥** means the `TAB` key
 | `_cdn→`     | component display name |
 | `_ren→`     | `render() method` |
 | `_sst→`     | `setState()` |
+| `_ust→`     | use state `const [x, setX] = useState()` |
 | `_props→`   | `this.props.` |
 | `_state→`   | `this.state.` |
 | `_rrc→`     | `React.render()` |

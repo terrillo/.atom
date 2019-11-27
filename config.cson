@@ -6,7 +6,6 @@
       ]
     disabledPackages: [
       "linter-twig"
-      "wakatime"
     ]
     excludeVcsIgnoredPaths: false
     telemetryConsent: "no"
@@ -28,6 +27,7 @@
   "linter-twig": {}
   "linter-ui-default":
     panelHeight: 69
+    showPanel: true
   "split-diff":
     diffWords: true
     ignoreWhitespace: true

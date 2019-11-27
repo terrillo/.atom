@@ -1,3 +1,95 @@
+## [1.7.6](https://github.com/AtomLinter/linter-phpcs/compare/v1.7.5...v1.7.6) (2019-09-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency semver to v6.3.0 ([7440e77](https://github.com/AtomLinter/linter-phpcs/commit/7440e77))
+* update package-lock.json ([522b634](https://github.com/AtomLinter/linter-phpcs/commit/522b634))
+
+## [1.7.5](https://github.com/AtomLinter/linter-phpcs/compare/v1.7.4...v1.7.5) (2019-09-13)
+
+
+### Bug Fixes
+
+* typo in package.json ([f0bfa4f](https://github.com/AtomLinter/linter-phpcs/commit/f0bfa4f))
+
+## [1.7.4](https://github.com/AtomLinter/linter-phpcs/compare/v1.7.3...v1.7.4) (2019-09-13)
+
+
+### Bug Fixes
+
+* path.dirname must be a string ([d2ff804](https://github.com/AtomLinter/linter-phpcs/commit/d2ff804))
+
+## [1.7.3](https://github.com/AtomLinter/linter-phpcs/compare/v1.7.2...v1.7.3) (2019-09-13)
+
+
+### Bug Fixes
+
+* column at end of tabbed line ([1e7a4f1](https://github.com/AtomLinter/linter-phpcs/commit/1e7a4f1))
+
+## [1.7.2](https://github.com/AtomLinter/linter-phpcs/compare/v1.7.1...v1.7.2) (2019-06-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency semver to v6.1.2 ([857a528](https://github.com/AtomLinter/linter-phpcs/commit/857a528))
+
+## [1.7.1](https://github.com/AtomLinter/linter-phpcs/compare/v1.7.0...v1.7.1) (2019-05-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency semver to v6.1.1 ([64e3f9a](https://github.com/AtomLinter/linter-phpcs/commit/64e3f9a))
+
+# [1.7.0](https://github.com/AtomLinter/linter-phpcs/compare/v1.6.14...v1.7.0) (2019-05-15)
+
+
+### Features
+
+* adding ./bin/ to the list of autoloaded phpcs paths ([280ee36](https://github.com/AtomLinter/linter-phpcs/commit/280ee36))
+
+## [1.6.14](https://github.com/AtomLinter/linter-phpcs/compare/v1.6.13...v1.6.14) (2019-04-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency atom-package-deps to v5.1.0 ([8284532](https://github.com/AtomLinter/linter-phpcs/commit/8284532))
+
+## [1.6.13](https://github.com/AtomLinter/linter-phpcs/compare/v1.6.12...v1.6.13) (2019-03-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency semver to v6 ([4c4b43c](https://github.com/AtomLinter/linter-phpcs/commit/4c4b43c))
+
+## [1.6.12](https://github.com/AtomLinter/linter-phpcs/compare/v1.6.11...v1.6.12) (2019-01-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency atom-package-deps to v5 ([765d3d3](https://github.com/AtomLinter/linter-phpcs/commit/765d3d3))
+
+## [1.6.11](https://github.com/AtomLinter/linter-phpcs/compare/v1.6.10...v1.6.11) (2018-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency semver to v5.6.0 ([76a5a7e](https://github.com/AtomLinter/linter-phpcs/commit/76a5a7e))
+
+## [1.6.10](https://github.com/AtomLinter/linter-phpcs/compare/v1.6.9...v1.6.10) (2018-09-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency semver to v5.5.1 ([4ccda84](https://github.com/AtomLinter/linter-phpcs/commit/4ccda84))
+
+## [1.6.9](https://github.com/AtomLinter/linter-phpcs/compare/v1.6.8...v1.6.9) (2018-09-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency atom-package-deps to v4.6.2 ([b3fb401](https://github.com/AtomLinter/linter-phpcs/commit/b3fb401))
+
 # Change Log
 
 ## [v1.6.8](https://github.com/AtomLinter/linter-phpcs/tree/v1.6.8) (2017-10-03)

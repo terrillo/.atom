@@ -74,7 +74,6 @@ const fixPHPCSColumn = (lineText, givenCol, tabWidth, currentStandards, version)
     // PHPCS lower than v2 ignores standards forced tabLength
     tabLength = 1;
   }
-  let column = givenCol;
   let screenCol = 0;
   for (let col = 0; col < lineText.length; col += 1) {
     const char = lineText[col];
@@ -83,12 +82,11 @@ const fixPHPCSColumn = (lineText, givenCol, tabWidth, currentStandards, version)
     } else {
       screenCol += 1;
     }
-    if (screenCol >= column) {
-      column = col + 1;
-      break;
+    if (screenCol >= givenCol) {
+      return col + 1;
     }
   }
-  return column;
+  return lineText.length + 1;
 };
 
 const scopeAvailable = (scope, available) => {
@@ -99,15 +97,14 @@ const scopeAvailable = (scope, available) => {
   }
 };
 
-const getFileRealPath = async filePath =>
-  new Promise((resolve, reject) => {
-    fs.realpath(filePath, (err, resolvedPath) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(resolvedPath);
-    });
+const getFileRealPath = async (filePath) => new Promise((resolve, reject) => {
+  fs.realpath(filePath, (err, resolvedPath) => {
+    if (err) {
+      reject(err);
+    }
+    resolve(resolvedPath);
   });
+});
 
 export default {
   activate() {
@@ -176,7 +173,7 @@ export default {
   },
 
   deactivate() {
-    this.idleCallbacks.forEach(callbackID => window.cancelIdleCallback(callbackID));
+    this.idleCallbacks.forEach((callbackID) => window.cancelIdleCallback(callbackID));
     this.idleCallbacks.clear();
     this.subscriptions.dispose();
   },
@@ -189,6 +186,11 @@ export default {
       lintsOnChange: true,
       lint: async (textEditor) => {
         const filePath = textEditor.getPath();
+        if (!filePath) {
+          // TextEditor has no path associated with it (yet), bail early
+          return null;
+        }
+
         const fileText = textEditor.getText();
 
         if (fileText === '') {
@@ -204,7 +206,10 @@ export default {
 
         // Check if a local PHPCS executable is available
         if (this.autoExecutableSearch) {
-          const phpcsNames = ['vendor/bin/phpcs.bat', 'vendor/bin/phpcs'];
+          const phpcsNames = [
+            'vendor/bin/phpcs.bat', 'vendor/bin/phpcs',
+            'bin/phpcs', 'bin/phpcs.bat',
+          ];
           const projExecutable = await helpers.findCachedAsync(fileDir, phpcsNames);
 
           if (projExecutable !== null) {
@@ -232,7 +237,7 @@ export default {
         if (semver.gte(version, '3.0.0')) {
           // PHPCS v3 and up support this with STDIN files
           parameters.push(`--ignore=${this.ignorePatterns.join(',')}`);
-        } else if (this.ignorePatterns.some(pattern => minimatch(filePath, pattern))) {
+        } else if (this.ignorePatterns.some((pattern) => minimatch(filePath, pattern))) {
           // We must determine this ourself for lower versions
           return [];
         }
@@ -247,8 +252,8 @@ export default {
           return [];
         }
 
-        const standard = this.autoConfigSearch && confFile ?
-          confFile : this.codeStandardOrConfigFile;
+        const standard = this.autoConfigSearch && confFile
+          ? confFile : this.codeStandardOrConfigFile;
         if (standard) {
           parameters.push(`--standard=${standard}`);
         }
