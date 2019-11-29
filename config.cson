@@ -9,14 +9,17 @@
     ]
     excludeVcsIgnoredPaths: false
     telemetryConsent: "no"
+    themes: [
+      "one-dark-ui"
+      "mono-syntax"
+    ]
   docblockr:
     param_description: false
     return_description: false
   editor:
     fontFamily: "Roboto Mono"
-    fontSize: 13
+    fontSize: 16
     invisibles: {}
-    showIndentGuide: true
     softWrap: true
   "exception-reporting":
     userId: "04b4ef68-ef77-4034-814f-5fce2d6bf2d4"

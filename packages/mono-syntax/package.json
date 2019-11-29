@@ -1,0 +1,51 @@
+{
+  "_from": "https://www.atom.io/api/packages/mono-syntax/versions/0.0.2/tarball",
+  "_id": "mono-syntax@0.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-u7PEsQKz9Od4wPdWgYfFDoCx1/kI9YnX45kvp/tJGnnQ1B2HnnE2Dh6/nb6Wb3310CcWS4J53HrZAFipZ01G9w==",
+  "_location": "/mono-syntax",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/mono-syntax/versions/0.0.2/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/mono-syntax/versions/0.0.2/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/mono-syntax/versions/0.0.2/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/mono-syntax/versions/0.0.2/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/mono-syntax/versions/0.0.2/tarball",
+  "_shasum": "029cea4384f87f26761d34a7ae86252d7b142ad0",
+  "_spec": "https://www.atom.io/api/packages/mono-syntax/versions/0.0.2/tarball",
+  "_where": "/private/var/folders/cr/7wyf__qx40vgr2y508htr2tw0000gn/T/apm-install-dir-1191029-33050-lgh2w5.0wnv",
+  "bugs": {
+    "url": "https://github.com/chrstphrknwtn/mono-syntax/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A mostly monochrome and dark syntax theme",
+  "engines": {
+    "atom": ">=1.18.0 <2.0.0"
+  },
+  "homepage": "https://github.com/chrstphrknwtn/mono-syntax#readme",
+  "keywords": [
+    "mono",
+    "monochrome",
+    "monochromatic",
+    "dark",
+    "syntax",
+    "theme",
+    "minimal",
+    "minimalist"
+  ],
+  "license": "MIT",
+  "name": "mono-syntax",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrstphrknwtn/mono-syntax.git"
+  },
+  "theme": "syntax",
+  "version": "0.0.2"
+}
