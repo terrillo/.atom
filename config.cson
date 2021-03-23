@@ -1,9 +1,6 @@
 "*":
   core:
     audioBeep: false
-    disabledPackages: [
-      "python-linters"
-    ]
     projectHome: "/Users/terrillo/Sites"
     telemetryConsent: "no"
     themes: [
