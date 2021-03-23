@@ -19,7 +19,7 @@
   "_resolved": "https://www.atom.io/api/packages/linter/versions/3.3.0/tarball",
   "_shasum": "b5c0fb776099ce69ee3e4de3be28145a457b877a",
   "_spec": "https://www.atom.io/api/packages/linter/versions/3.3.0/tarball",
-  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-2021220-9807-m2b233.0khur",
+  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-2021223-24253-1fx9oqc.wb1j",
   "activationHooks": [
     "core:loaded-shell-environment"
   ],
