@@ -1,0 +1,16 @@
+"*":
+  core:
+    audioBeep: false
+    projectHome: "/Users/terrillo/Sites"
+    telemetryConsent: "no"
+  editor:
+    preferredLineLength: 120
+  "exception-reporting":
+    userId: "545f09cf-c993-40ec-89dd-541e4007d7c8"
+  "prettier-atom":
+    formatOnSaveOptions:
+      enabled: true
+      showInStatusBar: true
+    prettierEslintOptions: {}
+  welcome:
+    showOnStartup: false
