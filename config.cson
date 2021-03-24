@@ -15,20 +15,13 @@
     softWrap: true
   "exception-reporting":
     userId: "545f09cf-c993-40ec-89dd-541e4007d7c8"
-  "linter-flake8":
-    executablePath: "/Users/terrillo/Library/Python/3.8/bin/flake8"
-    ignoreErrorCodes: [
-      "W191"
-    ]
-  "linter-pylint":
-    executablePath: "/Users/terrillo/Library/Python/3.8/bin/pylint"
-    pythonPath: "/Users/terrillo/Library/Python/3.8/bin"
-  "linter-ui-default":
-    panelHeight: 274
-    showPanel: true
+  mprettier:
+    formatOnSave:
+      enable: true
   "prettier-atom":
     formatOnSaveOptions:
       enabled: true
+      isDisabledIfNoConfigFile: true
       showInStatusBar: true
     prettierEslintOptions: {}
   "python-linters":
