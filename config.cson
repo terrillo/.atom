@@ -11,6 +11,7 @@
     fontFamily: "Roboto Mono"
     lineHeight: 1.9
     preferredLineLength: 120
+    showIndentGuide: true
     softWrap: true
   "exception-reporting":
     userId: "545f09cf-c993-40ec-89dd-541e4007d7c8"
