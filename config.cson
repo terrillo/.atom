@@ -9,6 +9,7 @@
     ]
   editor:
     fontFamily: "Roboto Mono"
+    fontSize: 13
     lineHeight: 1.9
     preferredLineLength: 120
     showIndentGuide: true
