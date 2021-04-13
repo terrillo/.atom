@@ -1,0 +1,41 @@
+{
+  "_from": "https://www.atom.io/api/packages/language-splunkconf/versions/0.5.0/tarball",
+  "_id": "language-splunkconf@0.5.0",
+  "_inBundle": false,
+  "_integrity": "sha512-wv9wNFvZpu9M9u74xl+9qrKM33dm1FVAq9Igfv8PsuoumCEGNA6OEjLxnZbGKxqeU7mgqH0RV8YAYpggTiud6A==",
+  "_location": "/language-splunkconf",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/language-splunkconf/versions/0.5.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/language-splunkconf/versions/0.5.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/language-splunkconf/versions/0.5.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/language-splunkconf/versions/0.5.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/language-splunkconf/versions/0.5.0/tarball",
+  "_shasum": "f3565f10ec4b4aab7836f797252b51c88af5abc3",
+  "_spec": "https://www.atom.io/api/packages/language-splunkconf/versions/0.5.0/tarball",
+  "_where": "/private/var/folders/vt/j050_rzj2zx8kb6l1f7v3zb40000gn/T/apm-install-dir-2021311-81834-18bvf5l.mp2tk",
+  "bugs": {
+    "url": "https://github.com/thejeffreystone/language-splunkconf/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Splunk conf file highlighting in Atom",
+  "engines": {
+    "atom": "*"
+  },
+  "homepage": "https://github.com/thejeffreystone/language-splunkconf#readme",
+  "license": "MIT",
+  "name": "language-splunkconf",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thejeffreystone/language-splunkconf.git"
+  },
+  "version": "0.5.0"
+}

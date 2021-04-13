@@ -1,0 +1,49 @@
+{
+  "_from": "https://www.atom.io/api/packages/language-ini/versions/1.23.0/tarball",
+  "_id": "language-ini@1.23.0",
+  "_inBundle": false,
+  "_integrity": "sha512-NaY/4dZGEEHd4BKw2uJWkSFKeeW6uYQqsWZ/hjz7FLr5QN32wClGgLvuvyvXxDiDBjRuIza+U5vNYjI4bn/9jg==",
+  "_location": "/language-ini",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/language-ini/versions/1.23.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/language-ini/versions/1.23.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/language-ini/versions/1.23.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/language-ini/versions/1.23.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/language-ini/versions/1.23.0/tarball",
+  "_shasum": "7e4ddb68b7ad693c4e24ec998f801cd1422748c6",
+  "_spec": "https://www.atom.io/api/packages/language-ini/versions/1.23.0/tarball",
+  "_where": "/private/var/folders/vt/j050_rzj2zx8kb6l1f7v3zb40000gn/T/apm-install-dir-2021311-79815-1m9vg1n.y1ek",
+  "author": {
+    "name": "Jacob Bednarz",
+    "email": "jacob.bednarz@gmail.com",
+    "url": "https://jacobbednarz.github.io"
+  },
+  "bugs": {
+    "url": "https://github.com/jacobbednarz/atom-language-ini/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Syntax support for ini files.",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "homepage": "https://github.com/jacobbednarz/atom-language-ini",
+  "license": "MIT",
+  "name": "language-ini",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobbednarz/atom-language-ini.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.23.0"
+}

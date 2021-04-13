@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- SEO -->
+    <title>{{ SEO.title }} - Visitorkit</title>
+    <meta name="description" content="{{ SEO.description }}" />
+    <link rel="canonical" href="https://visitorkit.com{{ CONFIG.url.path }}" />
+    <meta property="og:title" content="{{ SEO.title }} - Visitorkit" />
+    <meta property="og:description" content="{{ SEO.description }}" />
+    <meta property="og:url" content="https://visitorkit.com{{ CONFIG.url.path }}" />
+    <meta property="og:site_name" content="Visitorkit" />
+    <meta property="og:image" content="https://visitorkit.com/static/img/web-share.png" />
+    <meta property="og:image:secure_url" content="https://visitorkit.com/static/img/web-share.png" />
+    <meta property="og:image:width" content="1000" />
+    <meta property="og:image:height" content="500" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:description" content="{{ SEO.description }}" />
+    <meta name="twitter:title" content="{{ SEO.title }} - Visitorkit" />
+    <meta name="twitter:image" content="https://visitorkit.com/static/img/web-share.png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://visitorkit.com",
+            "url": "https://visitorkit.com",
+            "name": "Visitorkit"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://visitorkit.com{{ CONFIG.url.path }}",
+            "url": "https://visitorkit.com{{ CONFIG.url.path }}",
+            "inLanguage": "en-US",
+            "name": "{{ SEO.title }} - Visitorkit",
+            "isPartOf": { "@id": "https://visitorkit.com" },
+            "datePublished": "2021-03-17T12:37:32+00:00",
+            "dateModified": "2021-03-17T12:37:32+00:00",
+            "description": "{{ SEO.description }}"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Visitorkit -->
+    {% if CONFIG.local %}
+    <script src="/static/sdk/sdk.min.js?{{ CONFIG.cache }}"></script>
+    {% else %}
+    <script src="https://sdk.visitorkit.com/v1/324f4"></script>
+    {% endif %}
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/static/img/LOGO@128.png" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/vendor/tailwind.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet" />
+    {% if CSS %} {% for view in CSS %}
+    <link rel="stylesheet" href="/static/css/views/{{view}}.css?{{ CONFIG.cache }}" />
+    {% endfor %} {% endif %}
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QEZ3GPZCXK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "AW-467330516");
+    </script>
+  </head>
+  <body>
+    {% block content %} {% endblock %}
+
+    <!-- CONFIG -->
+    <script>
+      window.domain_marketing = "//{{ CONFIG.url.domain }}";
+      window.domain_app = "//app.{{ CONFIG.url.domain }}";
+    </script>
+
+    <!-- JS -->
+    {% include 'blocks/firebase.html' %}
+    <script src="/static/js/vendor/jquery-2.2.4.js"></script>
+    <script src="/static/js/vendor/rollbar.js"></script>
+
+    <!-- Views -->
+    {% if JS %} {% for view in JS %}
+    <script src="/static/js/views/{{view}}.js?{{ CONFIG.cache }}"></script>
+    {% endfor %} {% endif %}
+    <script src="/static/js/marketing.js?{{ CONFIG.cache }}"></script>
+  </body>
+</html>

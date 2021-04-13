@@ -16,6 +16,8 @@
     softWrap: true
   "exception-reporting":
     userId: "545f09cf-c993-40ec-89dd-541e4007d7c8"
+  "linter-ui-default":
+    showPanel: true
   mprettier:
     formatOnSave:
       enable: true
@@ -25,6 +27,7 @@
       isDisabledIfNoConfigFile: true
       showInStatusBar: true
     prettierEslintOptions: {}
+  "python-black": {}
   "python-linters":
     path: {}
   welcome:
