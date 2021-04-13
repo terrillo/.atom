@@ -27,7 +27,8 @@
       isDisabledIfNoConfigFile: true
       showInStatusBar: true
     prettierEslintOptions: {}
-  "python-black": {}
+  "python-black":
+    showErrors: "flash"
   "python-linters":
     path: {}
   welcome:
