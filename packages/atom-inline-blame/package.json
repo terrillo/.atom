@@ -1,0 +1,45 @@
+{
+  "_from": "https://www.atom.io/api/packages/atom-inline-blame/versions/0.0.10/tarball",
+  "_id": "atom-inline-blame@0.0.10",
+  "_inBundle": false,
+  "_integrity": "sha512-mvWbbeJhI5PO99RdjrqO+rGGYHcRj4WqgUb14Y+7fgh8LgBTAmtQi8PVDHtM9iqixYnYsm8AxVf/yE4nl87MdA==",
+  "_location": "/atom-inline-blame",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/atom-inline-blame/versions/0.0.10/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/atom-inline-blame/versions/0.0.10/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/atom-inline-blame/versions/0.0.10/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/atom-inline-blame/versions/0.0.10/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/atom-inline-blame/versions/0.0.10/tarball",
+  "_shasum": "9005caae47285cedaeefda7088ac677e977d9478",
+  "_spec": "https://www.atom.io/api/packages/atom-inline-blame/versions/0.0.10/tarball",
+  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-2021109-32634-1aj57a5.0rnz",
+  "bugs": {
+    "url": "https://github.com/gregorym/atom-inline-blame/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "date-fns": "^1.29.0"
+  },
+  "deprecated": false,
+  "description": "Inline Git Blame",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/gregorym/atom-inline-blame#readme",
+  "keywords": [],
+  "license": "MIT",
+  "main": "./lib/atom-inline-blame",
+  "name": "atom-inline-blame",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregorym/atom-inline-blame.git"
+  },
+  "version": "0.0.10"
+}

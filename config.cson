@@ -1,12 +1,20 @@
 "*":
+  "atom-inline-blame":
+    format: "%relativeTime% ago - %summary%"
   core:
     disabledPackages: [
       "about"
       "background-tips"
     ]
     telemetryConsent: "no"
+    themes: [
+      "one-dark-ui"
+      "dracula-syntax"
+    ]
   editor:
+    defaultFontSize: 12
     fontFamily: "Roboto Mono"
+    fontSize: 12
     lineHeight: 2
     preferredLineLength: 120
     showIndentGuide: true
@@ -17,5 +25,6 @@
       enabled: true
   "python-black":
     lineLength: 120
+  "tree-ignore": {}
   welcome:
     showOnStartup: false

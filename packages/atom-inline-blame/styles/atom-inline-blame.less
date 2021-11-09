@@ -1,0 +1,15 @@
+@import "ui-variables";
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.2; }
+}
+
+.atom-inline-git-blame[data-screen-row]::after {
+  content: var(--inline-blame-message, "");
+  opacity: 0.2;
+  position: relative;
+  left: 25px;
+  animation: fadeIn 0.2s linear 0s 1;
+  -webkit-font-smoothing: antialiased;
+};
