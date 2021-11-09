@@ -1,0 +1,18 @@
+"*":
+  core:
+    disabledPackages: [
+      "about"
+      "background-tips"
+    ]
+    telemetryConsent: "no"
+  editor:
+    fontFamily: "Roboto Mono"
+    lineHeight: 2
+    showIndentGuide: true
+  "exception-reporting":
+    userId: "5913db56-f56b-416b-aaf2-cee028a85970"
+  "prettier-atom":
+    formatOnSaveOptions:
+      enabled: true
+  welcome:
+    showOnStartup: false
