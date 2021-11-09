@@ -1,0 +1,48 @@
+{
+  "_from": "https://www.atom.io/api/packages/python-black/versions/0.7.0/tarball",
+  "_id": "python-black@0.7.0",
+  "_inBundle": false,
+  "_integrity": "sha512-OMHEYvSQk5M+UvGq5QNAM1Bgjg9LH6ots+GRjg+S0xDv+Du5cHwU3vcUZIpxWPhHKFEGrcpVlPGUd/I7Gb7iCw==",
+  "_location": "/python-black",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/python-black/versions/0.7.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/python-black/versions/0.7.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/python-black/versions/0.7.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/python-black/versions/0.7.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/python-black/versions/0.7.0/tarball",
+  "_shasum": "7130759c05fb8406396f85b42af6e67916c70ee2",
+  "_spec": "https://www.atom.io/api/packages/python-black/versions/0.7.0/tarball",
+  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-2021109-30199-1xc55px.tb2j",
+  "bugs": {
+    "url": "https://github.com/mikehoyio/atom-python-black/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Format Python code using Black",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/mikehoyio/atom-python-black#readme",
+  "keywords": [
+    "python",
+    "black",
+    "fmt",
+    "format"
+  ],
+  "license": "MIT",
+  "main": "./lib/python-black",
+  "name": "python-black",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikehoyio/atom-python-black.git"
+  },
+  "version": "0.7.0"
+}

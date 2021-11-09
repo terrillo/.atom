@@ -8,11 +8,14 @@
   editor:
     fontFamily: "Roboto Mono"
     lineHeight: 2
+    preferredLineLength: 120
     showIndentGuide: true
   "exception-reporting":
     userId: "5913db56-f56b-416b-aaf2-cee028a85970"
   "prettier-atom":
     formatOnSaveOptions:
       enabled: true
+  "python-black":
+    lineLength: 120
   welcome:
     showOnStartup: false
