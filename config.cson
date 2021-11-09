@@ -20,6 +20,8 @@
     showIndentGuide: true
   "exception-reporting":
     userId: "5913db56-f56b-416b-aaf2-cee028a85970"
+  "file-types":
+    "*.f7.html": "text.html.mustache"
   "prettier-atom":
     formatOnSaveOptions:
       enabled: true
