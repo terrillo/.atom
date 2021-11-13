@@ -1,0 +1,121 @@
+@import "ui-variables";
+@import "syntax-variables";
+
+.signature-element {
+  overflow: auto; // prevents the long text to come out of the datatip
+  background: @app-background-color;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 1);
+  color: @syntax-text-color;
+  font-size: 1rem; // some themes set font sizes on the root node
+  margin-top: -2px; // Compensate for shadow
+  position: relative;
+  white-space: nowrap;
+
+  user-select: text;
+  pointer-events: all;
+
+  display: block;
+  visibility: hidden; // controlled by js
+
+  padding: 5px 5px 2px 5px;
+
+  font-family: @font-family;
+  font-size: var(--editor-font-size);
+
+  max-height: 480px;
+  max-width: 600px;
+
+  // code blocks styling
+  pre {
+    font-family: var(--editor-font-family);
+    font-size: var(--editor-font-size);
+    margin: 2px;
+    margin-bottom: 8px;
+    border-radius: 0;
+  }
+
+  p {
+    margin-left: 8px;
+    margin-right: 8px;
+
+    &:last-child {
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.signature-overlay {
+  border-bottom: 5px solid @background-color-highlight;
+  border-radius: 3px;
+
+  // info bar glow
+  transition: border-bottom-color 0.15s ease;
+  &:hover {
+    border-bottom-color: lighten(@background-color-highlight, 10%);
+  }
+}
+
+.signature-content {
+  flex-grow: 1;
+
+  // Allow higher-level component to override the cursor property on certain children.
+  .list-tree {
+    cursor: inherit;
+  }
+}
+
+/** Applied to SnippetView */
+
+.signature-snippet-container {
+  overflow: auto;
+  color: @syntax-text-color;
+
+  // Avoid excess internal padding from markdown blocks.
+  :first-child {
+    margin-top: 0;
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid fade(@syntax-cursor-color, 10%);
+  }
+}
+
+.signature-snippet {
+  flex-grow: 1;
+  .cursors {
+    display: none;
+  }
+}
+
+/** Applied to MarkdownView */
+
+.signature-markdown > div:not(:last-child) {
+  border-bottom: 1px solid fade(@syntax-cursor-color, 10%);
+}
+
+.signature-markdown-container {
+  color: @syntax-text-color;
+  white-space: normal;
+
+  // Avoid excess internal padding from markdown blocks.
+  :first-child {
+    margin-top: 0;
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    &:first-child {
+      margin-top: 8px;
+    }
+    &:last-child {
+      margin-bottom: 8px;
+    }
+  }
+}

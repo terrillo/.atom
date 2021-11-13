@@ -1,0 +1,42 @@
+{
+  "_from": "https://www.atom.io/api/packages/atom-jinja2/versions/0.6.0/tarball",
+  "_id": "atom-jinja2@0.6.0",
+  "_inBundle": false,
+  "_integrity": "sha512-C/74lVpUgYgGo+fvy6Xx7jyBhfw3WRHS9Sm0PycHX5BDbjHpqUjX6C6T9ZFzhsAPw1fCOPzDj7mKQzPxVK7KFw==",
+  "_location": "/atom-jinja2",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/atom-jinja2/versions/0.6.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/atom-jinja2/versions/0.6.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/atom-jinja2/versions/0.6.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/atom-jinja2/versions/0.6.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/atom-jinja2/versions/0.6.0/tarball",
+  "_shasum": "61f72e6108b387544e5518b636b7d8810e18f503",
+  "_spec": "https://www.atom.io/api/packages/atom-jinja2/versions/0.6.0/tarball",
+  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-20211012-20110-1e48cjp.we0q",
+  "bugs": {
+    "url": "https://github.com/danielchatfield/atom-jinja2/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Syntax highlighting for jinja2 templates.",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "homepage": "https://github.com/danielchatfield/atom-jinja2#readme",
+  "license": "MIT",
+  "name": "atom-jinja2",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielchatfield/atom-jinja2.git"
+  },
+  "version": "0.6.0"
+}

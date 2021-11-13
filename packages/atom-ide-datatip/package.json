@@ -1,0 +1,98 @@
+{
+  "_from": "https://www.atom.io/api/packages/atom-ide-datatip/versions/0.25.0/tarball",
+  "_id": "atom-ide-datatip@0.25.0",
+  "_inBundle": false,
+  "_integrity": "sha512-1o4cPVdvi7gCWBJ4W8XuGBd87dAIc+82Io8BYP7y5cBpdaNd/XT8+zOxXK+P7n5SUQ4W9By3K0q3Gu7b14j61Q==",
+  "_location": "/atom-ide-datatip",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/atom-ide-datatip/versions/0.25.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/atom-ide-datatip/versions/0.25.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/atom-ide-datatip/versions/0.25.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/atom-ide-datatip/versions/0.25.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/atom-ide-datatip/versions/0.25.0/tarball",
+  "_shasum": "15d2efac8f3c3d4b55ad6c006dd9395c31e417ef",
+  "_spec": "https://www.atom.io/api/packages/atom-ide-datatip/versions/0.25.0/tarball",
+  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-20211012-20291-1j9sk9j.dfl5",
+  "activationHooks": [
+    "core:loaded-shell-environment"
+  ],
+  "atomTestRunner": "./spec/runner",
+  "bugs": {
+    "url": "https://github.com/atom-community/atom-ide-datatip/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "atom-ide-base": "^3.0.0",
+    "atom-package-deps": "^7.2.3",
+    "solid-js": "^0.26.5"
+  },
+  "deprecated": false,
+  "description": "A replacement for the Data Tooltip provider that was originally part of the Atom IDE package from Facebook.",
+  "devDependencies": {
+    "@types/atom": "^1.40.10",
+    "@types/jasmine": "^3.7.7",
+    "@types/node": "^15.12.2",
+    "atom-jasmine3-test-runner": "^5.2.6",
+    "babel-preset-atomic": "^4.1.0",
+    "babel-preset-solid": "^0.26.5",
+    "build-commit": "^0.1.4",
+    "cross-env": "latest",
+    "eslint": "7.28.0",
+    "eslint-config-atomic": "^1.15.3",
+    "prettier-config-atomic": "^2.0.5",
+    "rollup-plugin-atomic": "^2.3.2",
+    "shx": "^0.3.3",
+    "typescript": "^4.3.2"
+  },
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/atom-community/atom-ide-datatip#readme",
+  "keywords": [
+    "atom-package",
+    "atom-ide",
+    "datatip"
+  ],
+  "license": "MIT",
+  "main": "./dist/main.js",
+  "name": "atom-ide-datatip",
+  "package-deps": [
+    "busy-signal"
+  ],
+  "prettier": "prettier-config-atomic",
+  "providedServices": {
+    "datatip": {
+      "versions": {
+        "0.1.0": "provideDatatipService"
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atom-community/atom-ide-datatip.git"
+  },
+  "scripts": {
+    "build": "npm run tsc -- --noEmit && npm run clean && cross-env NODE_ENV=production cross-env BABEL_KEEP_MODULES=true rollup -c",
+    "build-commit": "build-commit -o dist",
+    "bump": "ncu -u",
+    "clean": "shx rm -rf dist",
+    "dev": "npm run clean && cross-env NODE_ENV=development cross-env BABEL_KEEP_MODULES=true rollup -c -w",
+    "format": "prettier --write .",
+    "lint": "eslint . --fix",
+    "prepare": "npm run build",
+    "test": "npm run test.unit && npm run test.integration",
+    "test.format": "prettier . --check",
+    "test.integration": "npm run build && atom --test spec",
+    "test.lint": "eslint .",
+    "test.unit": "npm run tsc && atom --test spec",
+    "tsc": "tsc -p ./lib/tsconfig.json"
+  },
+  "version": "0.25.0"
+}

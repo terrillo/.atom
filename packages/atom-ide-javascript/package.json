@@ -1,0 +1,110 @@
+{
+  "_from": "https://www.atom.io/api/packages/atom-ide-javascript/versions/1.5.0/tarball",
+  "_id": "atom-ide-javascript@1.5.0",
+  "_inBundle": false,
+  "_integrity": "sha512-iNfCp4492RZL5WY1Kg+qlxv27Ypcqe03tL2NYRSJ51QwptIWjdpDAWO4YT8ryZvN5SSNMSfaLcMJ8HVR8sYHtg==",
+  "_location": "/atom-ide-javascript",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/atom-ide-javascript/versions/1.5.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/atom-ide-javascript/versions/1.5.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/atom-ide-javascript/versions/1.5.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/atom-ide-javascript/versions/1.5.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/atom-ide-javascript/versions/1.5.0/tarball",
+  "_shasum": "c92ca6c3b23f68ae5e190e94937e2b03638e01cd",
+  "_spec": "https://www.atom.io/api/packages/atom-ide-javascript/versions/1.5.0/tarball",
+  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-20211012-20431-7fahjs.vi5yn",
+  "atomTestRunner": "./spec/runner",
+  "author": {
+    "name": "Amin Yahyaabadi"
+  },
+  "bugs": {
+    "url": "https://github.com/atom-ide-community/atom-ide-javascript/issues"
+  },
+  "bundleDependencies": false,
+  "consumedServices": {},
+  "dependencies": {
+    "@atom-ide-community/nuclide-commons-atom": "0.8.2",
+    "@atom-ide-community/nuclide-debugger-common": "0.8.2",
+    "atom-package-deps": "^6.0.0",
+    "react": "16.6.3",
+    "vscode-chrome-debug-core": "3.17.10",
+    "vscode-debugadapter": "1.24.0",
+    "vscode-nls": "2.0.2"
+  },
+  "deprecated": false,
+  "description": "  ",
+  "devDependencies": {
+    "@babel/cli": "7.11.6",
+    "@babel/core": "7.11.6",
+    "@types/atom": "1.40.4",
+    "@types/jasmine": "^3.5.14",
+    "@types/node": "^14.11.8",
+    "atom-jasmine3-test-runner": "^5.1.2",
+    "babel-preset-atomic": "^2.4.2",
+    "build-commit": "0.1.1",
+    "coffeescript": "^2.5.1",
+    "cross-env": "^7.0.2",
+    "eslint": "7.11.0",
+    "eslint-config-atomic": "^1.5.0",
+    "npm-check-updates": "9.0.4",
+    "prettier": "^2.1.2",
+    "rollup": "^2.32.0",
+    "rollup-plugin-atomic": "^1.6.1",
+    "shx": "^0.3.2",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.3"
+  },
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "homepage": "https://github.com/atom-ide-community/atom-ide-javascript#readme",
+  "keywords": [
+    "javascript",
+    "ide",
+    "atom"
+  ],
+  "license": "MIT",
+  "main": "dist/main.js",
+  "name": "atom-ide-javascript",
+  "package-deps": [
+    "atom-ide-base",
+    "atom-typescript",
+    "linter-eslint",
+    "autocomplete-paths",
+    "javascript-drag-import"
+  ],
+  "providedServices": {
+    "debugger.provider": {
+      "description": "NodeJS debugger engine.",
+      "versions": {
+        "0.0.0": "createNodeDebuggerProvider"
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atom-ide-community/atom-ide-javascript.git"
+  },
+  "scripts": {
+    "babel": "npm run clean && shx cp -r src dist && cross-env NODE_ENV=development cross-env BABEL_KEEP_MODULES=false babel dist --out-dir dist",
+    "build": "npm run babel && npm run copy",
+    "build-commit": "build-commit -o dist",
+    "bump": "ncu -u",
+    "bundle": "npm run clean && cross-env NODE_ENV=production cross-env BABEL_KEEP_MODULES=true rollup -c ",
+    "clean": "shx rm -rf dist",
+    "copy": "shx cp -r src/debugger/node/VendorLib dist/debugger/node",
+    "dev": "npm run clean && cross-env NODE_ENV=development cross-env BABEL_KEEP_MODULES=true rollup -c -w",
+    "format": "prettier --write .",
+    "lint": "eslint . --fix",
+    "prepare": "npm run build",
+    "test": "atom --test spec"
+  },
+  "version": "1.5.0"
+}

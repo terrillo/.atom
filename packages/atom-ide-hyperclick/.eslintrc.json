@@ -1,0 +1,4 @@
+{
+  "extends": ["eslint-config-atomic/strict-react"],
+  "ignorePatterns": ["dist/", "node_modules/"]
+}

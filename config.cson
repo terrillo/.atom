@@ -1,6 +1,9 @@
 "*":
   "atom-inline-blame":
     format: "%relativeTime% ago - %summary%"
+  "atom-typescript":
+    allowJS: true
+    checkAllFilesOnSave: false
   core:
     disabledPackages: [
       "about"
@@ -21,7 +24,10 @@
   "exception-reporting":
     userId: "5913db56-f56b-416b-aaf2-cee028a85970"
   "file-types":
-    "*.f7.html": "text.html.mustache"
+    "*.f7": "text.html.mustache"
+  "linter-ui-default":
+    panelHeight: 97
+    showPanel: true
   "prettier-atom":
     formatOnSaveOptions:
       enabled: true

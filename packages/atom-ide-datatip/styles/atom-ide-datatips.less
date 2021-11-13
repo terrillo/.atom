@@ -1,0 +1,134 @@
+@import "ui-variables";
+@import "syntax-variables";
+
+.datatip-element {
+  overflow: auto; // prevents the long text to come out of the datatip
+  color: @syntax-text-color;
+  white-space: nowrap;
+
+  pointer-events: all; // hyperlinks will work
+  user-select: text; // allow selecting text
+
+  font-family: @font-family;
+  font-size: var(--editor-font-size);
+
+  max-height: 500px;
+  max-width: 700px;
+
+  // code blocks styling
+  pre {
+    font-family: var(--editor-font-family);
+    font-size: var(--editor-font-size);
+    margin: 2px;
+    margin-bottom: 8px;
+    border-radius: 0;
+  }
+
+  p {
+    margin-left: 8px;
+    margin-right: 8px;
+
+    &:last-child {
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.datatip-element.select-list.popover-list {
+  width: auto;
+}
+
+.datatip-overlay {
+  // info border
+  border-bottom: 4px solid @background-color-highlight;
+  border-radius: 3px;
+
+  // info bar glow
+  transition: border-bottom-color 0.15s ease;
+  &:hover {
+    border-bottom-color: lighten(@background-color-highlight, 2%);
+  }
+}
+
+/** Applied to ReactView (Components) */
+
+.datatip-component-container {
+  display: flex;
+  position: relative;
+  color: @syntax-text-color;
+  white-space: normal;
+
+  // Avoid excess internal padding from markdown blocks.
+  :first-child {
+    margin-top: 0;
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid fade(@syntax-cursor-color, 10%);
+  }
+}
+
+.datatip-component {
+  flex-grow: 1;
+
+  // Allow higher-level component to override the cursor property on certain children.
+  .list-tree {
+    cursor: inherit;
+  }
+}
+
+/** Applied to MarkdownView */
+
+.datatip-markdown > div:not(:last-child) {
+  border-bottom: 1px solid fade(@syntax-cursor-color, 10%);
+}
+
+.datatip-markdown-container {
+  color: @syntax-text-color;
+  white-space: normal;
+
+  // Avoid excess internal padding from markdown blocks.
+  :first-child {
+    margin-top: 0;
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    &:first-child {
+      margin-top: 8px;
+    }
+    &:last-child {
+      margin-bottom: 8px;
+    }
+  }
+}
+
+/** Applied to SnippetView */
+
+.datatip-snippet-container {
+  overflow: auto;
+}
+
+.datatip-snippet {
+  flex-grow: 1;
+  .cursors {
+    display: none;
+  }
+}
+
+// Highlight the hovered words
+atom-text-editor {
+  .datatip-highlight-region > .region {
+    // Use a faded version of the cursor color so as to have a distinction when
+    // overlapping with a selection (`@syntax-selection-color`). This element is
+    // on top of the selection element, so that will show through.
+    background: fade(@syntax-cursor-color, 10%);
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "_from": "https://www.atom.io/api/packages/javascript-drag-import/versions/0.1.13/tarball",
+  "_id": "javascript-drag-import@0.1.13",
+  "_inBundle": false,
+  "_integrity": "sha512-g46qzc6PnaxWc3hmLn9jAR9GyUN0CpcgvoPx0thq4dmuvEJ+oVFUyOIGtZeYx8Ws0i2F8CB7CZbe76XW4wT6PQ==",
+  "_location": "/javascript-drag-import",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/javascript-drag-import/versions/0.1.13/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/javascript-drag-import/versions/0.1.13/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/javascript-drag-import/versions/0.1.13/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/javascript-drag-import/versions/0.1.13/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/javascript-drag-import/versions/0.1.13/tarball",
+  "_shasum": "0aac6c5b8586c63c9d84cbbec2e4dbab9a49ba54",
+  "_spec": "https://www.atom.io/api/packages/javascript-drag-import/versions/0.1.13/tarball",
+  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-20211012-20499-ocddgm.h5wv8",
+  "bugs": {
+    "url": "https://github.com/ElecTreeFrying/javascript-drag-import/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "camelcase": "^5.3.1",
+    "relative": "^3.0.2",
+    "sub-atom": "^1.1.0"
+  },
+  "deprecated": false,
+  "description": "Auto import by dragging files from tree-view to your active pane without typing. Supported file types are: JS , JSX , TS , TSX , CSS , SCSS , SASS and LESS.",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/ElecTreeFrying/javascript-drag-import#readme",
+  "keywords": [
+    "javascript",
+    "typescript",
+    "angular",
+    "react",
+    "import",
+    "autoimport",
+    "fastimport"
+  ],
+  "license": "MIT",
+  "main": "./lib/main",
+  "name": "javascript-drag-import",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElecTreeFrying/javascript-drag-import.git"
+  },
+  "version": "0.1.13"
+}

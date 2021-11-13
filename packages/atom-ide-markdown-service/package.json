@@ -1,0 +1,106 @@
+{
+  "_from": "https://www.atom.io/api/packages/atom-ide-markdown-service/versions/2.1.0/tarball",
+  "_id": "atom-ide-markdown-service@2.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-jj6fTOHlI306wwR2VBC1pBaxfJCPrxl7ynjcg6VxRJAhOlL2RKpE9BwiAKM7pWFbdZvBtGa055uDKmKGN7eJXQ==",
+  "_location": "/atom-ide-markdown-service",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/atom-ide-markdown-service/versions/2.1.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/atom-ide-markdown-service/versions/2.1.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/atom-ide-markdown-service/versions/2.1.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/atom-ide-markdown-service/versions/2.1.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/atom-ide-markdown-service/versions/2.1.0/tarball",
+  "_shasum": "bd8c1973a0fb56407d81a9e4e82682c1e64cbaf4",
+  "_spec": "https://www.atom.io/api/packages/atom-ide-markdown-service/versions/2.1.0/tarball",
+  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-20211012-20284-193flcb.mb3o",
+  "activationHooks": [
+    "core:loaded-shell-environment"
+  ],
+  "bugs": {
+    "url": "https://github.com/atom-ide-community/atom-ide-markdown-service/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "dompurify": "^2.2.6",
+    "marked": "^1.2.9"
+  },
+  "deprecated": false,
+  "description": "A markdown rendering service.",
+  "devDependencies": {
+    "@types/atom": "1.40.7",
+    "@types/dompurify": "2.2.1",
+    "@types/jasmine": "^3.6.3",
+    "@types/marked": "^1.2.2",
+    "@types/node": "^14.14.25",
+    "atom-ide-base": "^2.2.0",
+    "atom-jasmine3-test-runner": "^5.1.8",
+    "atom-languageclient": "^1.0.6",
+    "build-commit": "0.1.4",
+    "cross-env": "^7.0.3",
+    "eslint": "7.19.0",
+    "eslint-config-atomic": "^1.9.0",
+    "npm-check-updates": "11.1.1",
+    "prettier": "^2.2.1",
+    "rollup": "^2.38.4",
+    "rollup-plugin-atomic": "^2.0.1",
+    "shx": "^0.3.3",
+    "tslib": "^2.1.0",
+    "typescript": "^4.1.3"
+  },
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "files": [
+    "dist",
+    "modules",
+    "src"
+  ],
+  "homepage": "https://github.com/atom-ide-community/atom-ide-markdown-service#readme",
+  "keywords": [
+    "atom-package",
+    "atom-ide",
+    "markdown",
+    "renderer"
+  ],
+  "license": "MIT",
+  "main": "./dist/main",
+  "name": "atom-ide-markdown-service",
+  "package-deps": [],
+  "providedServices": {
+    "markdown-renderer": {
+      "versions": {
+        "1.0.0": "provideMarkdownRenderer",
+        "1.1.0": "provideMarkdownRenderer"
+      }
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atom-ide-community/atom-ide-markdown-service.git"
+  },
+  "scripts": {
+    "babel": "npm run clean && shx cp -r lib dist && cross-env NODE_ENV=development cross-env BABEL_KEEP_MODULES=false babel dist --out-dir dist",
+    "build": "npm run clean && npm run tsc && cross-env NODE_ENV=production cross-env BABEL_KEEP_MODULES=true rollup -c ",
+    "build-commit": "build-commit -o dist",
+    "bump": "ncu -u",
+    "clean": "shx rm -rf dist modules",
+    "dev": "npm run clean && npm run tsc && cross-env NODE_ENV=development cross-env BABEL_KEEP_MODULES=true rollup -c -w",
+    "format": "prettier --write .",
+    "lint": "eslint . --fix",
+    "prepare": "npm run build",
+    "test": "atom --test spec",
+    "test.format": "prettier . --check",
+    "test.lint": "eslint .",
+    "tsc": "npm run tsc.cjs && npm run tsc.es",
+    "tsc.cjs": "tsc -p ./src/tsconfig.json",
+    "tsc.es": "tsc --module esnext -p ./src/tsconfig.es.json"
+  },
+  "version": "2.1.0"
+}

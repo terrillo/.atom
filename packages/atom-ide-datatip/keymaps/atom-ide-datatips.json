@@ -1,0 +1,8 @@
+{
+  ".platform-darwin atom-text-editor": {
+    "cmd-alt": "datatip:toggle"
+  },
+  ".platform-win32 atom-text-editor, .platform-linux atom-text-editor": {
+    "ctrl-alt": "datatip:toggle"
+  }
+}
