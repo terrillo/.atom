@@ -1,4 +1,6 @@
 "*":
+  "atom-ide-outline":
+    initialDisplay: false
   "atom-inline-blame":
     format: "%relativeTime% ago - %summary%"
   "atom-typescript":
