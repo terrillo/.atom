@@ -1,25 +1,26 @@
 {
-  "_from": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.15.2/tarball",
-  "_id": "autocomplete-paths@2.15.2",
+  "_from": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.17.0/tarball",
+  "_id": "autocomplete-paths@2.17.0",
   "_inBundle": false,
-  "_integrity": "sha512-G6cI7LMM+DgcgozB0Osi3KQ6nzRowoLhwH2uaMtJv6Jf4H4IvVc9x1stHBsfE7BDor4QFMIdM4QnncclsL0MFw==",
+  "_integrity": "sha512-V/xiqLilYHDOoXfmGyJK0CwyNIhTeM3pieOQwcn02y0qLRKUMskLZnGN7iZIET9l9kottbzLFoJ1q3EZHJHJlA==",
   "_location": "/autocomplete-paths",
   "_phantomChildren": {},
   "_requested": {
     "type": "remote",
-    "raw": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.15.2/tarball",
-    "rawSpec": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.15.2/tarball",
-    "saveSpec": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.15.2/tarball",
-    "fetchSpec": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.15.2/tarball"
+    "raw": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.17.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.17.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.17.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.17.0/tarball"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.15.2/tarball",
-  "_shasum": "11b17e2c7541fdf504c8dc70e5bbacbf026399f9",
-  "_spec": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.15.2/tarball",
-  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-20211012-20489-o5cs7m.i4h4",
+  "_resolved": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.17.0/tarball",
+  "_shasum": "42916445ad75f3d95e4ae06ec27aeb49c67b6499",
+  "_spec": "https://www.atom.io/api/packages/autocomplete-paths/versions/2.17.0/tarball",
+  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-20211121-79861-3sjt3b.hukza",
+  "atomTestRunner": "./spec/runner.js",
   "bugs": {
     "url": "https://github.com/atom-community/autocomplete-paths/issues"
   },
@@ -32,31 +33,32 @@
     }
   },
   "dependencies": {
-    "chokidar": "^3.5.1",
-    "fast-glob": "^3.2.5",
-    "globify-gitignore": "^0.2.0",
+    "chokidar": "^3.5.2",
+    "fast-glob": "^3.2.7",
+    "globify-gitignore": "^0.2.1",
     "minimatch": "^3.0.4",
-    "slash": "^3.0.0",
-    "underscore": "^1.12.0",
-    "zadeh": "^2.0.2"
+    "slash": "^4.0.0",
+    "underscore": "^1.13.1",
+    "zadeh": "^2.1.0"
   },
   "deprecated": false,
   "description": "Adds path autocompletion to autocomplete+",
   "devDependencies": {
-    "@babel/cli": "^7.13.10",
-    "@babel/core": "^7.13.10",
-    "@types/atom": "^1.40.10",
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@types/atom": "^1.40.11",
     "@types/is-valid-path": "^0.1.0",
-    "@types/minimatch": "^3.0.3",
-    "@types/node": "^14.14.35",
-    "@types/underscore": "^1.11.0",
-    "babel-preset-atomic": "^3.0.3",
+    "@types/minimatch": "^3.0.5",
+    "@types/node": "^12",
+    "@types/underscore": "^1.11.3",
+    "atom-jasmine3-test-runner": "^5.2.9",
+    "babel-preset-atomic": "^4.2.1",
     "build-commit": "0.1.4",
     "cross-env": "7.0.3",
-    "eslint": "^7.22.0",
-    "eslint-config-atomic": "^1.12.4",
-    "parcel": "2.0.0-nightly.476",
-    "prettier-config-atomic": "^1.0.1",
+    "eslint": "^7.32.0",
+    "eslint-config-atomic": "^1.16.5",
+    "parcel": "^2.0.1",
+    "prettier-config-atomic": "^3.0.1",
     "shx": "0.3.3"
   },
   "engines": {
@@ -105,5 +107,5 @@
       "isLibrary": true
     }
   },
-  "version": "2.15.2"
+  "version": "2.17.0"
 }

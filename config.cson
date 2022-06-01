@@ -5,12 +5,30 @@
     format: "%relativeTime% ago - %summary%"
   "atom-typescript":
     allowJS: true
-    checkAllFilesOnSave: false
+    extensionsFromGrammars: false
+    ignoredDiagnosticCodes: [
+      "8002"
+      "8003"
+      "8004"
+      "8006"
+      "8008"
+      "8010"
+    ]
+    jsFileExtensions: [
+      ".afsdf"
+    ]
+    jsSyntaxScopes: [
+      "source.js"
+      "source.jsx"
+      "javascript"
+      "source.flow"
+    ]
   core:
     disabledPackages: [
       "about"
       "background-tips"
     ]
+    packagesWithKeymapsDisabled: []
     telemetryConsent: "no"
     themes: [
       "one-dark-ui"
@@ -19,22 +37,49 @@
   editor:
     defaultFontSize: 12
     fontFamily: "Roboto Mono"
-    fontSize: 12
     lineHeight: 2
     preferredLineLength: 120
     showIndentGuide: true
+    softWrap: true
+    softWrapAtPreferredLineLength: true
   "exception-reporting":
     userId: "5913db56-f56b-416b-aaf2-cee028a85970"
+  "fast-eslint": {}
   "file-types":
     "*.f7": "text.html.mustache"
+  "ide-python":
+    pylsPlugins:
+      pycodestyle:
+        ignore: [
+          "E121"
+          "E123"
+          "E126"
+          "E226"
+          "E24"
+          "E704"
+          "W503"
+          "E722"
+        ]
+        maxLineLength: 180
+      pydocstyle:
+        ignore: [
+          "E722"
+        ]
+  "linter-eslint":
+    disabling: {}
   "linter-ui-default":
-    panelHeight: 97
-    showPanel: true
+    largeFileLineCount: 2000
+    longLineLength: 300
+    panelHeight: 265
+  "markdown-preview":
+    breakOnSingleNewline: true
   "prettier-atom":
     formatOnSaveOptions:
       enabled: true
+    useEslint: true
   "python-black":
     lineLength: 120
+    showErrors: "flash"
   "tree-ignore": {}
   welcome:
     showOnStartup: false

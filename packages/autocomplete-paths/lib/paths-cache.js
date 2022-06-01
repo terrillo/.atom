@@ -1,8 +1,7 @@
-"use babel"
 import { EventEmitter } from "events"
 import minimatch from "minimatch"
 import { Directory, File } from "atom"
-import { dirname, basename } from "path"
+import { dirname } from "path"
 import { union, dedent } from "./utils"
 import { globifyPath, globifyDirectory, globifyGitIgnoreFile } from "globify-gitignore"
 import glob from "fast-glob"
@@ -35,12 +34,14 @@ export default class PathsCache extends EventEmitter {
       ignoredNames: atom.config.get("core.ignoredNames"),
       ignoredPatterns: atom.config.get("autocomplete-paths.ignoredPatterns"),
       maxFileCount: atom.config.get("autocomplete-paths.maxFileCount"),
+      followSymlinks: atom.config.get("autocomplete-paths.followSymlinks"),
     }
   }
 
   /**
    * Rebuilds the paths cache
-   * @returns {Promise<Array<Array<string>>>}
+   *
+   * @returns {Promise<string[][]>}
    */
   async rebuildCache() {
     this.dispose()
@@ -59,9 +60,10 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Returns the file paths for the given project directory with the given (optional) relative path
-   * @param  {Directory} projectDirectory
-   * @param  {string | null} [relativeToPath=null]
-   * @return {string[]}
+   *
+   * @param {Directory} projectDirectory
+   * @param {string | null} [relativeToPath=null] Default is `null`
+   * @returns {string[]}
    */
   getFilePathsForProjectDirectory(projectDirectory, relativeToPath = null) {
     const filePaths = this._filePathsByProjectDirectory.get(projectDirectory.path) || []
@@ -73,6 +75,7 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Disposes this PathsCache
+   *
    * @param {boolean} isPackageDispose
    */
   dispose(isPackageDispose) {
@@ -95,47 +98,54 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Checks if the given path is ignored
-   * @param  {string}  path
-   * @return {boolean}
+   *
    * @private
+   * @param {string} path
+   * @returns {boolean}
    */
   _isPathIgnored(path) {
-    let ignored = false
-    if (this.config.excludeVcsIgnoredPaths) {
-      this._repositories.forEach((repository) => {
-        if (ignored) {
-          return
-        }
-        const isIgnoredSubmodule = this.config.ignoreSubmodules && repository.isSubmodule(path)
-        if (repository.isPathIgnored(path) || isIgnoredSubmodule) {
-          ignored = true
-        }
+    if (
+      this.config.excludeVcsIgnoredPaths &&
+      this._repositories.some((repository) => {
+        return repository.isPathIgnored(path)
       })
+    ) {
+      return true
     }
 
-    if (this.config.shouldIgnoredNames) {
-      this.config.ignoredNames.forEach((ignoredName) => {
-        if (ignored) {
-          return
-        }
-        ignored = ignored || minimatch(path, ignoredName, { matchBase: true, dot: true })
+    if (
+      this.config.ignoreSubmodules &&
+      this._repositories.some((repository) => {
+        return repository.isSubmodule(path)
       })
+    ) {
+      return true
     }
 
-    if (this.config.ignoredPatterns) {
-      this.config.ignoredPatterns.forEach((ignoredPattern) => {
-        if (ignored) {
-          return
-        }
-        ignored = ignored || minimatch(path, ignoredPattern, { dot: true })
+    if (
+      this.config.shouldIgnoredNames &&
+      this.config.ignoredNames.some((ignoredName) => {
+        return minimatch(path, ignoredName, { matchBase: true, dot: true })
       })
+    ) {
+      return true
     }
 
-    return ignored
+    if (
+      this.config.ignoredPatterns &&
+      this.config.ignoredPatterns.some((ignoredPattern) => {
+        return minimatch(path, ignoredPattern, { dot: true })
+      })
+    ) {
+      return true
+    }
+
+    return false
   }
 
   /**
    * Caches the project paths and repositories
+   *
    * @private
    */
   async _cacheProjectPathsAndRepositories() {
@@ -153,8 +163,9 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Add watchers for all the projectDirectories
-   * @return {Promise<void>}
+   *
    * @private
+   * @returns {Promise<void>}
    */
   async _addWatchers() {
     await Promise.all(
@@ -164,8 +175,9 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Add a watcher for the projectDirectory
-   * @param  {Directory} projectDirectory
+   *
    * @private
+   * @param {Directory} projectDirectory
    */
   async _addWatcherForDirectory(projectDirectory) {
     // close if already added
@@ -192,7 +204,7 @@ export default class PathsCache extends EventEmitter {
       .watch([projectPath, ...ignored], {
         persistent: true,
         ignoreInitial: true, // do not run the listeners on the initial scan
-        followSymlinks: false,
+        followSymlinks: this.config.followSymlinks,
         interval: 1000,
         binaryInterval: 1000,
       })
@@ -242,9 +254,7 @@ export default class PathsCache extends EventEmitter {
     this._filePathsByProjectDirectory.set(projectDirectory.path, filePaths)
   }
 
-  /**
-   * @param addedDir {string}
-   */
+  /** @param addedDir {string} */
   async onAddDir(addedDir) {
     await this._cachePathsForDirectoryWithGlob(addedDir)
   }
@@ -260,10 +270,11 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Invoked when the content of the given `directory` has changed
-   * @param  {Directory} projectDirectory
-   * @param  {Directory} directory
-   * @returns {Promise<void>}
+   *
    * @private
+   * @param {Directory} projectDirectory
+   * @param {Directory} directory
+   * @returns {Promise<void>}
    */
   async _onDirectoryChanged(projectDirectory, directory) {
     this.emit("rebuild-cache")
@@ -275,8 +286,9 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Removes all watchers inside the given directory
-   * @param  {Directory} directory
+   *
    * @private
+   * @param {Directory} directory
    */
   _cleanWatchersForDirectory(directory) {
     // TODO promise all
@@ -290,9 +302,10 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Removes all cached file paths in the given directory
-   * @param  {Directory} projectDirectory
-   * @param  {Directory} directory
+   *
    * @private
+   * @param {Directory} projectDirectory
+   * @param {Directory} directory
    */
   _removeFilePathsForDirectory(projectDirectory, directory) {
     let filePaths = this._filePathsByProjectDirectory.get(projectDirectory.path)
@@ -363,8 +376,9 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Caches file paths with Glob or Atom
-   * @return {Promise<Array<Array<string>>}
+   *
    * @private
+   * @returns {Promise<((string)[])[]}
    */
   _cachePaths() {
     try {
@@ -377,10 +391,11 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Caches file paths for the given directory with Glob or Atom
-   * @param  {Directory} projectDirectory
-   * @param  {Directory} directory
-   * @return {Promise}
+   *
    * @private
+   * @param {Directory} projectDirectory
+   * @param {Directory} directory
+   * @returns {Promise}
    */
   _cachePathsForDirectory(projectDirectory, directory) {
     try {
@@ -402,8 +417,9 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Builds the file cache with `glob`
-   * @return {Promise<Array<Array<string>>>}
+   *
    * @private
+   * @returns {Promise<string[][]>}
    */
   async _cachePathsWithGlob() {
     const result = await Promise.all(
@@ -414,9 +430,10 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Returns a list of ignore patterns for a directory
-   * @param  {string} directoryPath
-   * @returns {Promise<Array<string>>} an array of glob patterns
+   *
    * @private
+   * @param {string} directoryPath
+   * @returns {Promise<string[]>} An array of glob patterns
    */
   async _getIgnoredPatternsGlob(directoryPath) {
     const patterns = []
@@ -434,6 +451,7 @@ export default class PathsCache extends EventEmitter {
     const globEntries = new Array(patternsNum)
 
     for (let iEntry = 0; iEntry < patternsNum; iEntry++) {
+      // eslint-disable-next-line no-await-in-loop
       const globifyOutput = await globifyPath(patterns[iEntry], directoryPath)
 
       // Check if `globifyPath` returns a pair or a string
@@ -451,10 +469,11 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Returns the glob pattern of all gitignore files in a directory
-   * @param  {string} rootDirectory
-   * @param {string[]} ignoredPatternsGlob
-   * @returns {Promise<Array<string>>} an array of glob patterns
+   *
    * @private
+   * @param {string} rootDirectory
+   * @param {string[]} ignoredPatternsGlob
+   * @returns {Promise<string[]>} An array of glob patterns
    */
   async _getAllGitIgnoreGlob(rootDirectory, ignoredPatternsGlob) {
     if (this.config.excludeVcsIgnoredPaths) {
@@ -467,6 +486,7 @@ export default class PathsCache extends EventEmitter {
           cwd: rootDirectory,
           onlyFiles: true,
           absolute: true,
+          followSymbolicLinks: this.config.followSymlinks,
         }
       )
       return (
@@ -478,7 +498,8 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Get all ignored glob using `this._getGitIgnoreGlob` and `this._getIgnoredPatternsGlob`
-   * @param  {string} directoryPath the given directory path
+   *
+   * @param {string} directoryPath The given directory path
    * @returns {Promise<string[]>}
    */
   async _getAllIgnoredGlob(directoryPath) {
@@ -489,9 +510,10 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Populates cache for the given directory
-   * @param  {string} directoryPath the given directory path
-   * @return {Promise<Array<string>>}
+   *
    * @private
+   * @param {string} directoryPath The given directory path
+   * @returns {Promise<string[]>}
    */
   async _cachePathsForDirectoryWithGlob(directoryPath) {
     const directoryGlob = globifyDirectory(directoryPath)
@@ -504,6 +526,7 @@ export default class PathsCache extends EventEmitter {
         dot: true,
         cwd: directoryPath,
         onlyFiles: true,
+        followSymbolicLinks: this.config.followSymlinks,
       }
     )
     this._filePathsByProjectDirectory.set(directoryPath, files)
@@ -520,8 +543,9 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Builds the file cache using Atom
-   * @return {Promise<Array<Array<string>>>}
+   *
    * @private
+   * @returns {Promise<string[][]>}
    */
   async _cachePathsWithAtom() {
     const result = await Promise.all(
@@ -534,10 +558,11 @@ export default class PathsCache extends EventEmitter {
 
   /**
    * Caches file paths for the given directory with Atom
-   * @param  {Directory} projectDirectory
-   * @param  {Directory} directory
-   * @return {Promise<Array<string>>}
+   *
    * @private
+   * @param {Directory} projectDirectory
+   * @param {Directory} directory
+   * @returns {Promise<string[]>}
    */
   async _cachePathsForDirectoryWithAtom(projectDirectory, directory) {
     if (this._cancelled) {
@@ -589,9 +614,10 @@ export default class PathsCache extends EventEmitter {
 
 /**
  * Returns the glob pattern of a gitignore of a directory
- * @param  {string} directoryPath
- * @returns {Promise<Array<string>>} an array of glob patterns
+ *
  * @private
+ * @param {string} directoryPath
+ * @returns {Promise<string[]>} An array of glob patterns
  */
 function _getDirectoryGitIgnoreGlob(directoryPath) {
   try {

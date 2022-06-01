@@ -1,25 +1,25 @@
 {
-  "_from": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.2/tarball",
-  "_id": "atom-ide-code-format@1.0.2",
+  "_from": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.3/tarball",
+  "_id": "atom-ide-code-format@1.0.3",
   "_inBundle": false,
-  "_integrity": "sha512-kClVSMHDmKDeOeFfo2p1L/5LVBzJ4aUOZ4uxW0hlH+L+qfWQjmnYKPELcbXo7nu35pLuQR2jfAxrwEPXKwncCA==",
+  "_integrity": "sha512-dwwtoVwbxkw6hh4ne3AWjsUl/jkatj4y4f4UQ+YBNBcAZ5xfO3XmscdKKM8f28TFgVevKw5DIAQ7tgiSLTRXug==",
   "_location": "/atom-ide-code-format",
   "_phantomChildren": {},
   "_requested": {
     "type": "remote",
-    "raw": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.2/tarball",
-    "rawSpec": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.2/tarball",
-    "saveSpec": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.2/tarball",
-    "fetchSpec": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.2/tarball"
+    "raw": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.3/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.3/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.3/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.3/tarball"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.2/tarball",
-  "_shasum": "db63e6a8d74b0ce1fff04c1dbbfaaee3186f107c",
-  "_spec": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.2/tarball",
-  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-20211012-20359-gxo7ss.fnclv",
+  "_resolved": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.3/tarball",
+  "_shasum": "76895d0d3502a116370d52b3d452026ac3f397fd",
+  "_spec": "https://www.atom.io/api/packages/atom-ide-code-format/versions/1.0.3/tarball",
+  "_where": "/private/var/folders/6j/tmyxg441747ck6nt_c96gnpc0000gn/T/apm-install-dir-2022317-41132-43xtau.arenw",
   "activationHooks": [
     "core:loaded-shell-environment"
   ],
@@ -63,7 +63,7 @@
   "dependencies": {
     "@atom-ide-community/nuclide-commons": "^0.8.3",
     "@atom-ide-community/nuclide-commons-atom": "^0.8.3",
-    "log4js": "6.3.0"
+    "log4js": "6.4.4"
   },
   "deprecated": false,
   "description": "Provides a code-formatting provider API",
@@ -79,7 +79,7 @@
     "cross-env": "^7.0.3",
     "eslint-config-atomic": "^1.16.1",
     "prettier-config-atomic": "^2.0.5",
-    "rollup-plugin-atomic": "^2.3.2",
+    "rollup-plugin-atomic": "^3.0.0",
     "shx": "^0.3.3",
     "temp": "^0.9.4",
     "typescript": "^4.3.5",
@@ -112,5 +112,5 @@
     "test.lint": "eslint .",
     "test.only": "atom --test ./dist/spec"
   },
-  "version": "1.0.2"
+  "version": "1.0.3"
 }

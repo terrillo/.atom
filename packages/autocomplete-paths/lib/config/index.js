@@ -1,5 +1,3 @@
-"use babel"
-
 import { OptionScopes } from "./option-scopes"
 
 export const config = {
@@ -18,6 +16,16 @@ export const config = {
     description:
       "Suggestion priority of this provider. If set to a number larger than or equal to 1, suggestions will be displayed on top of default suggestions.",
     default: 2,
+  },
+  followSymlinks: {
+    type: "boolean",
+    default: false,
+    description: "Follow directory symlinks. Disable if you have a self-referencing symlink.",
+  },
+  imagePreview: {
+    type: "boolean",
+    default: false,
+    description: "Show preview icon for images.",
   },
   ignoredNames: {
     type: "boolean",
